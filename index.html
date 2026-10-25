@@ -6,81 +6,319 @@
   <title>Mi portafolio web</title>
 
   <style>
+    :root {
+      --fondo: #090d1a;
+      --tarjeta: rgba(22, 31, 55, 0.82);
+      --texto: #f4f7ff;
+      --suave: #aab5ce;
+      --azul: #68d5ff;
+      --morado: #a78bfa;
+      --verde: #55e6a5;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
-      padding: 40px 20px;
-      font-family: Arial, sans-serif;
-      color: #eef4ff;
-      background: #101827;
+      min-height: 100vh;
+      color: var(--texto);
+      background:
+        radial-gradient(ellipse at 12% 8%, rgba(70, 105, 255, 0.22), transparent 34%),
+        radial-gradient(ellipse at 88% 22%, rgba(151, 93, 255, 0.18), transparent 30%),
+        var(--fondo);
+      font-family: system-ui, Arial, sans-serif;
     }
 
     main {
-      max-width: 800px;
+      width: min(1050px, 100% - 40px);
       margin: auto;
     }
 
-    h1,
-    h2 {
-      color: #65c8ff;
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 0;
     }
 
-    p {
-      line-height: 1.6;
-      color: #d0d9e8;
+    .marca {
+      color: var(--texto);
+      font-weight: 800;
+      letter-spacing: 1px;
     }
 
-    .proyecto {
-      padding: 22px;
-      margin-top: 24px;
-      border: 1px solid #344762;
-      border-radius: 14px;
-      background: #19263a;
+    .marca span {
+      color: var(--azul);
+    }
+
+    .enlace-contacto {
+      color: var(--texto);
+      text-decoration: none;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 999px;
+      padding: 10px 16px;
+    }
+
+    .hero {
+      padding: 90px 0 75px;
+      max-width: 760px;
+    }
+
+    .etiqueta {
+      display: inline-block;
+      color: var(--azul);
+      background: rgba(104, 213, 255, 0.1);
+      border: 1px solid rgba(104, 213, 255, 0.24);
+      border-radius: 999px;
+      padding: 8px 13px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    h1 {
+      margin: 22px 0;
+      font-size: clamp(42px, 8vw, 76px);
+      line-height: 1.02;
+      letter-spacing: -3px;
+    }
+
+    h1 span {
+      color: transparent;
+      background: linear-gradient(90deg, var(--azul), var(--morado));
+      background-clip: text;
+      -webkit-background-clip: text;
+    }
+
+    .descripcion {
+      max-width: 620px;
+      color: var(--suave);
+      font-size: 18px;
+      line-height: 1.7;
+    }
+
+    .botones {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
     }
 
     .boton {
       display: inline-block;
-      margin-top: 8px;
-      padding: 12px 18px;
-      border-radius: 8px;
-      background: #19a85b;
-      color: white;
-      font-weight: bold;
+      padding: 13px 19px;
+      border-radius: 12px;
+      color: #07111c;
+      background: linear-gradient(100deg, var(--azul), var(--verde));
+      font-weight: 800;
       text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
     }
 
     .boton:hover {
-      background: #14894a;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(104, 213, 255, 0.2);
+    }
+
+    .boton-secundario {
+      color: var(--texto);
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.17);
+    }
+
+    .seccion {
+      padding: 25px 0 80px;
+    }
+
+    .seccion h2 {
+      margin-bottom: 8px;
+      font-size: 30px;
+    }
+
+    .subtitulo {
+      color: var(--suave);
+      margin-top: 0;
+    }
+
+    .proyecto {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 28px;
+      align-items: center;
+      padding: 30px;
+      margin-top: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.13);
+      border-radius: 22px;
+      background: var(--tarjeta);
+      box-shadow: 0 20px 70px rgba(0, 0, 0, 0.24);
+    }
+
+    .tipo {
+      color: var(--verde);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .proyecto h3 {
+      margin: 12px 0;
+      font-size: 27px;
+    }
+
+    .proyecto p {
+      color: var(--suave);
+      line-height: 1.7;
+    }
+
+    .vista {
+      min-height: 220px;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      text-align: center;
+      border: 1px solid rgba(104, 213, 255, 0.22);
+      border-radius: 17px;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(104, 213, 255, 0.23), transparent 60%),
+        linear-gradient(145deg, #172543, #11182a);
+    }
+
+    .vista strong {
+      display: block;
+      color: var(--azul);
+      font-size: 26px;
+      letter-spacing: 2px;
+    }
+
+    .vista span {
+      display: block;
+      margin-top: 10px;
+      color: var(--suave);
+    }
+
+    .habilidades {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 18px;
+    }
+
+    .habilidades span {
+      padding: 8px 11px;
+      color: #dce7ff;
+      border: 1px solid rgba(255, 255, 255, 0.13);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.05);
+      font-size: 13px;
+    }
+
+    footer {
+      padding: 24px 0 35px;
+      color: var(--suave);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 14px;
+    }
+
+    @media (max-width: 700px) {
+      .hero {
+        padding: 65px 0 50px;
+      }
+
+      .proyecto {
+        grid-template-columns: 1fr;
+        padding: 22px;
+      }
+
+      h1 {
+        letter-spacing: -2px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      .boton {
+        transition: none;
+      }
     }
   </style>
 </head>
 
 <body>
   <main>
-    <h1>Mi portafolio web</h1>
-    <p>Estoy aprendiendo a crear páginas web y aquí muestro algunos de mis proyectos.</p>
+    <header>
+      <div class="marca">&lt;<span>PORTAFOLIO</span>/&gt;</div>
+      <a class="enlace-contacto" href="#contacto">Contacto</a>
+    </header>
 
-    <h2>Mis proyectos</h2>
-
-    <section class="proyecto">
-      <h2>Página de viajes Tyjuasrip</h2>
-      <p>
-        Practiqué cómo organizar información de tours
-        y diseñar tarjetas para una página web.
+    <section class="hero">
+      <span class="etiqueta">DISEÑO WEB · PROYECTOS</span>
+      <h1>Ideas que toman forma <span>en la web.</span></h1>
+      <p class="descripcion">
+        Estoy aprendiendo a crear páginas web modernas y adaptables.
+        Aquí puedes conocer algunos de mis proyectos.
       </p>
+
+      <div class="botones">
+        <a class="boton" href="#proyectos">Ver mi proyecto</a>
+        <a class="boton boton-secundario" href="#contacto">Contactar</a>
+      </div>
     </section>
 
-    <section class="proyecto">
+    <section class="seccion" id="proyectos">
+      <h2>Proyecto destacado</h2>
+      <p class="subtitulo">Un proyecto familiar con el que practiqué diseño web.</p>
+
+      <article class="proyecto">
+        <div>
+          <span class="tipo">Proyecto familiar</span>
+          <h3>Página de viajes Tyjuasrip</h3>
+          <p>
+            Practiqué cómo organizar información de tours y presentarla
+            en una página clara y fácil de recorrer.
+          </p>
+
+          <div class="habilidades">
+            <span>HTML</span>
+            <span>CSS</span>
+            <span>Diseño adaptable</span>
+          </div>
+        </div>
+
+        <div class="vista">
+          <div>
+            <strong>TYJUASRIP</strong>
+            <span>Viajes y experiencias</span>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="seccion" id="contacto">
       <h2>¿Quieres una página para tu negocio?</h2>
-      <p>mandame mensaje y nos ponemos de acuerdo.</p>
+      <p class="subtitulo">Mi papá recibe los mensajes y me ayuda con los proyectos.</p>
       <a
         class="boton"
-        href="https://wa.me/6645598254"
+        href="https://wa.me/526645598254"
         target="_blank"
         rel="noopener noreferrer"
       >
         664 559 8254 — WhatsApp
       </a>
     </section>
+
+    <footer>
+      Mi portafolio web · Hecho con HTML y CSS
+    </footer>
   </main>
 </body>
 </html>
