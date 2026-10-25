@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#211713">
+  <title>Bruma Café — Demo</title>
+
+  <style>
+    :root {
+      --fondo: #211713;
+      --tarjeta: #30221b;
+      --crema: #f5ead8;
+      --suave: #c6b49e;
+      --naranja: #dd9062;
+      --borde: rgba(245, 234, 216, 0.15);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 90px;
+    }
+
+    body {
+      margin: 0;
+      color: var(--crema);
+      background:
+        radial-gradient(ellipse at 85% 5%, rgba(221, 144, 98, 0.16), transparent 32%),
+        var(--fondo);
+      font-family: Georgia, "Times New Roman", serif;
+    }
+
+    main {
+      width: min(1100px, calc(100% - 40px));
+      margin: auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      padding: 20px 0;
+      background: rgba(33, 23, 19, 0.94);
+      border-bottom: 1px solid var(--borde);
+      backdrop-filter: blur(12px);
+    }
+
+    .marca {
+      font-size: 18px;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+
+    .marca span,
+    .acento {
+      color: var(--naranja);
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+
+    nav a {
+      color: var(--suave);
+      font-family: Arial, sans-serif;
+      font-size: 13px;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    nav a:hover {
+      color: var(--naranja);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 45px;
+      align-items: center;
+      padding: 75px 0 90px;
+    }
+
+    .etiqueta {
+      color: var(--naranja);
+      font-family: Arial, sans-serif;
+      font-size: 11px;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+
+    h1 {
+      margin: 20px 0;
+      font-size: clamp(48px, 7vw, 82px);
+      line-height: 0.98;
+      letter-spacing: -3px;
+      font-weight: normal;
+    }
+
+    .hero p,
+    .texto-seccion,
+    .producto p {
+      color: var(--suave);
+      font-family: Arial, sans-serif;
+      line-height: 1.75;
+    }
+
+    .hero p {
+      max-width: 540px;
+      font-size: 16px;
+    }
+
+    .boton {
+      display: inline-block;
+      margin-top: 18px;
+      padding: 13px 18px;
+      color: #211713;
+      background: var(--naranja);
+      border-radius: 5px;
+      font-family: Arial, sans-serif;
+      font-size: 13px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: transform 0.2s, background 0.2s;
+    }
+
+    .boton:hover {
+      transform: translateY(-3px);
+      background: #edaa7f;
+    }
+
+    .visual {
+      position: relative;
+      min-height: 350px;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      border: 1px solid var(--borde);
+      border-radius: 160px 160px 16px 16px;
+      background:
+        radial-gradient(circle at 50% 42%, rgba(221, 144, 98, 0.31), transparent 36%),
+        linear-gradient(145deg, #493329, #2a1d17 75%);
+      animation: aparecer 0.9s 0.15s ease-out both;
+    }
+
+    .grano {
+      position: relative;
+      width: 100px;
+      height: 145px;
+      border: 2px solid rgba(245, 234, 216, 0.75);
+      border-radius: 50%;
+      background: linear-gradient(135deg, #b66943, #593426);
+      box-shadow: 0 18px 60px rgba(0, 0, 0, 0.38);
+      transform: rotate(35deg);
+      animation: flotar 5s ease-in-out infinite;
+    }
+
+    .grano::after {
+      position: absolute;
+      top: 8px;
+      left: 47px;
+      width: 3px;
+      height: 125px;
+      border-radius: 50%;
+      background: rgba(245, 234, 216, 0.7);
+      content: "";
+      transform: rotate(7deg);
+    }
+
+    .visual-texto {
+      position: absolute;
+      right: 20px;
+      bottom: 20px;
+      color: var(--suave);
+      font-family: Arial, sans-serif;
+      font-size: 10px;
+      letter-spacing: 2px;
+    }
+
+    .seccion {
+      padding: 65px 0;
+      border-top: 1px solid var(--borde);
+    }
+
+    .encabezado {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 24px;
+      margin-bottom: 28px;
+    }
+
+    .numero {
+      display: block;
+      margin-bottom: 10px;
+      color: var(--naranja);
+      font-family: Arial, sans-serif;
+      font-size: 11px;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(32px, 5vw, 48px);
+      font-weight: normal;
+    }
+
+    .encabezado p {
+      max-width: 420px;
+      margin: 0;
+    }
+
+    .menu {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .producto {
+      padding: 23px;
+      border: 1px solid var(--borde);
+      border-radius: 9px;
+      background: var(--tarjeta);
+      transition: transform 0.22s, border-color 0.22s;
+    }
+
+    .producto:hover {
+      transform: translateY(-5px);
+      border-color: rgba(221, 144, 98, 0.6);
+    }
+
+    .producto-cabecera {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      align-items: baseline;
+    }
+
+    .producto h3 {
+      margin: 0;
+      font-size: 21px;
+      font-weight: normal;
+    }
+
+    .precio {
+      color: var(--naranja);
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      font-weight: bold;
+      white-space: nowrap;
+    }
+
+    .producto p {
+      margin-bottom: 0;
+      font-size: 14px;
+    }
+
+    .nota {
+      margin-top: 16px;
+      color: var(--suave);
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+    }
+
+    .historia {
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 35px;
+      align-items: center;
+      padding: 30px;
+      border: 1px solid var(--borde);
+      border-radius: 12px;
+      background: linear-gradient(120deg, #3b2920, var(--tarjeta));
+    }
+
+    .historia-marca {
+      display: grid;
+      min-height: 220px;
+      place-items: center;
+      color: var(--naranja);
+      border: 1px solid rgba(221, 144, 98, 0.35);
+      border-radius: 8px;
+      font-size: 48px;
+      letter-spacing: 5px;
+    }
+
+    .historia p {
+      color: var(--suave);
+      font-family: Arial, sans-serif;
+      line-height: 1.8;
+    }
+
+    .pasos {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .paso {
+      padding: 22px;
+      border-left: 2px solid var(--naranja);
+      background: var(--tarjeta);
+      transition: transform 0.2s;
+    }
+
+    .paso:hover {
+      transform: translateX(5px);
+    }
+
+    .paso h3 {
+      margin: 0 0 10px;
+      font-weight: normal;
+    }
+
+    .paso p {
+      margin: 0;
+      color: var(--suave);
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .preguntas {
+      display: grid;
+      gap: 10px;
+      margin-top: 25px;
+    }
+
+    details {
+      padding: 18px;
+      border: 1px solid var(--borde);
+      border-radius: 8px;
+      background: var(--tarjeta);
+    }
+
+    summary {
+      cursor: pointer;
+      font-family: Arial, sans-serif;
+      font-weight: bold;
+    }
+
+    details p {
+      color: var(--suave);
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    .contacto {
+      padding: 30px;
+      border: 1px solid rgba(221, 144, 98, 0.4);
+      border-radius: 12px;
+      background:
+        radial-gradient(ellipse at 100% 0%, rgba(221, 144, 98, 0.15), transparent 50%),
+        var(--tarjeta);
+    }
+
+    footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 24px 0;
+      color: var(--suave);
+      border-top: 1px solid var(--borde);
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+    }
+
+    @keyframes aparecer {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes flotar {
+      0%, 100% {
+        transform: rotate(35deg) translateY(0);
+      }
+
+      50% {
+        transform: rotate(35deg) translateY(-10px);
+      }
+    }
+
+    @media (max-width: 760px) {
+      header,
+      .encabezado {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .hero,
+      .historia {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding: 50px 0 65px;
+      }
+
+      .visual {
+        min-height: 270px;
+      }
+
+      .menu,
+      .pasos {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 430px) {
+      main {
+        width: calc(100% - 28px);
+      }
+
+      nav {
+        gap: 12px;
+      }
+
+      footer {
+        flex-direction: column;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main id="inicio">
+    <header>
+      <div class="marca">BRUMA <span>CAFÉ</span></div>
+
+      <nav aria-label="Navegación principal">
+        <a href="#menu">Menú</a>
+        <a href="#historia">Concepto</a>
+        <a href="#experiencia">Experiencia</a>
+        <a href="#preguntas">Dudas</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div>
+        <span class="etiqueta">DEMO DE PORTAFOLIO · CAFETERÍA FICTICIA</span>
+        <h1>Una pausa que sabe a <span class="acento">algo más.</span></h1>
+        <p>
+          Un concepto de cafetería acogedora con café, pan recién hecho
+          y un espacio tranquilo para disfrutar el momento.
+        </p>
+        <a class="boton" href="#menu">Descubrir el menú</a>
+      </div>
+
+      <div class="visual" aria-label="Diseño gráfico de Bruma Café">
+        <div class="grano"></div>
+        <span class="visual-texto">CAFÉ · CALMA · MOMENTOS</span>
+      </div>
+    </section>
+
+    <section class="seccion" id="menu">
+      <div class="encabezado">
+        <div>
+          <span class="numero">01 / MENÚ</span>
+          <h2>Algo rico para hoy</h2>
+        </div>
+        <p class="texto-seccion">
+          Bebidas y precios ficticios para mostrar cómo podría verse
+          el menú de un café.
+        </p>
+      </div>
+
+      <div class="menu">
+        <article class="producto">
+          <div class="producto-cabecera">
+            <h3>Espresso</h3>
+            <span class="precio">$45 MXN*</span>
+          </div>
+          <p>Café intenso, corto y preparado al momento.</p>
+        </article>
+
+        <article class="producto">
+          <div class="producto-cabecera">
+            <h3>Latte de vainilla</h3>
+            <span class="precio">$65 MXN*</span>
+          </div>
+          <p>Espresso, leche espumada y un toque dulce.</p>
+        </article>
+
+        <article class="producto">
+          <div class="producto-cabecera">
+            <h3>Cold brew</h3>
+            <span class="precio">$70 MXN*</span>
+          </div>
+          <p>Café preparado en frío, suave y refrescante.</p>
+        </article>
+
+        <article class="producto">
+          <div class="producto-cabecera">
+            <h3>Chocolate caliente</h3>
+            <span class="precio">$60 MXN*</span>
+          </div>
+          <p>Chocolate cremoso para acompañar una tarde tranquila.</p>
+        </article>
+
+        <article class="producto">
+          <div class="producto-cabecera">
+            <h3>Pan de elote</h3>
+            <span class="precio">$48 MXN*</span>
+          </div>
+          <p>Una rebanada suave para acompañar tu bebida.</p>
+        </article>
+
+        <article class="producto">
+          <div class="producto-cabecera">
+            <h3>Galleta de la casa</h3>
+            <span class="precio">$35 MXN*</span>
+          </div>
+          <p>Galleta horneada con chispas de chocolate.</p>
+        </article>
+      </div>
+
+      <p class="nota">*Precios ficticios de muestra; no son una oferta real.</p>
+    </section>
+
+    <section class="seccion" id="historia">
+      <div class="historia">
+        <div class="historia-marca">B.</div>
+        <div>
+          <span class="numero">02 / EL CONCEPTO</span>
+          <h2>Un lugar para bajar el ritmo</h2>
+          <p>
+            Bruma Café es una idea de práctica: un espacio cálido donde
+            puedes tomar algo rico, platicar o disfrutar un momento tranquilo.
+            Este texto se cambiaría por la historia real del negocio si fuera
+            una página para un cliente.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="seccion" id="experiencia">
+      <div class="encabezado">
+        <div>
+          <span class="numero">03 / LA EXPERIENCIA</span>
+          <h2>Así sería tu visita</h2>
+        </div>
+      </div>
+
+      <div class="pasos">
+        <article class="paso">
+          <span class="numero">01</span>
+          <h3>Elige tu bebida</h3>
+          <p>Explora el menú y encuentra algo que se te antoje.</p>
+        </article>
+
+        <article class="paso">
+          <span class="numero">02</span>
+          <h3>Acompáñala</h3>
+          <p>Combina tu café con una pieza de pan o algo dulce.</p>
+        </article>
+
+        <article class="paso">
+          <span class="numero">03</span>
+          <h3>Disfruta el momento</h3>
+          <p>Quédate a conversar, leer o simplemente descansar.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="seccion" id="preguntas">
+      <div class="encabezado">
+        <div>
+          <span class="numero">04 / PREGUNTAS</span>
+          <h2>Preguntas frecuentes</h2>
+        </div>
+      </div>
+
+      <div class="preguntas">
+        <details>
+          <summary>¿El menú y los precios son reales?</summary>
+          <p>No. Son ejemplos inventados para esta demo de portafolio.</p>
+        </details>
+
+        <details>
+          <summary>¿Dónde está el café?</summary>
+          <p>Bruma Café es ficticio y no tiene una ubicación real.</p>
+        </details>
+
+        <details>
+          <summary>¿Puedo pedir por esta página?</summary>
+          <p>No. Esta página es una práctica y no recibe pedidos.</p>
+        </details>
+      </div>
+    </section>
+
+    <section class="seccion" id="contacto">
+      <div class="contacto">
+        <span class="numero">05 / CONTACTO</span>
+        <h2>Nos vemos en tu próxima pausa.</h2>
+        <p class="texto-seccion">
+          Esta es una demo ficticia: no representa una cafetería real
+          y no recibe pedidos.
+        </p>
+        <a class="boton" href="#inicio">Volver arriba ↑</a>
+      </div>
+    </section>
+
+    <footer>
+      <span>BRUMA CAFÉ</span>
+      <span>Demo ficticia creada para practicar diseño web.</span>
+    </footer>
+  </main>
+</body>
+</html>
