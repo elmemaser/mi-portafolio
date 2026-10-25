@@ -3,12 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#090d1a">
   <title>Mi portafolio web</title>
 
   <style>
     :root {
       --fondo: #090d1a;
-      --tarjeta: rgba(22, 31, 55, 0.88);
+      --tarjeta: #151f37;
       --texto: #f4f7ff;
       --suave: #aab5ce;
       --azul: #68d5ff;
@@ -22,14 +23,15 @@
 
     html {
       scroll-behavior: smooth;
+      scroll-padding-top: 80px;
     }
 
     body {
       margin: 0;
       color: var(--texto);
       background:
-        radial-gradient(ellipse at 12% 8%, rgba(70, 105, 255, 0.22), transparent 34%),
-        radial-gradient(ellipse at 88% 22%, rgba(151, 93, 255, 0.18), transparent 30%),
+        radial-gradient(ellipse at 12% 8%, rgba(70, 105, 255, 0.2), transparent 34%),
+        radial-gradient(ellipse at 88% 22%, rgba(151, 93, 255, 0.16), transparent 30%),
         var(--fondo);
       font-family: system-ui, Arial, sans-serif;
     }
@@ -43,6 +45,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 20px;
       padding: 24px 0;
     }
 
@@ -59,14 +62,14 @@
     .enlace-contacto {
       padding: 10px 16px;
       color: var(--texto);
-      text-decoration: none;
       border: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: 999px;
+      text-decoration: none;
     }
 
     .hero {
       max-width: 760px;
-      padding: 80px 0 70px;
+      padding: 78px 0 72px;
     }
 
     .etiqueta,
@@ -108,7 +111,7 @@
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
-      margin-top: 25px;
+      margin-top: 26px;
     }
 
     .boton {
@@ -116,6 +119,7 @@
       padding: 13px 19px;
       color: #07111c;
       background: linear-gradient(100deg, var(--azul), var(--verde));
+      border: 1px solid transparent;
       border-radius: 12px;
       font-weight: 800;
       text-decoration: none;
@@ -130,11 +134,11 @@
     .boton-secundario {
       color: var(--texto);
       background: rgba(255, 255, 255, 0.07);
-      border: 1px solid rgba(255, 255, 255, 0.17);
+      border-color: rgba(255, 255, 255, 0.17);
     }
 
     .seccion {
-      padding: 30px 0 75px;
+      padding: 32px 0 78px;
       border-top: 1px solid rgba(255, 255, 255, 0.1);
     }
 
@@ -149,15 +153,21 @@
 
     .proyecto {
       display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
+      grid-template-columns: 1fr 0.95fr;
       gap: 28px;
       align-items: center;
       padding: 28px;
       margin-top: 22px;
-      background: var(--tarjeta);
+      background: rgba(22, 31, 55, 0.88);
       border: 1px solid rgba(255, 255, 255, 0.13);
       border-radius: 20px;
-      box-shadow: 0 20px 70px rgba(0, 0, 0, 0.22);
+      box-shadow: 0 20px 70px rgba(0, 0, 0, 0.2);
+      transition: transform 0.22s, border-color 0.22s;
+    }
+
+    .proyecto:hover {
+      transform: translateY(-4px);
+      border-color: rgba(104, 213, 255, 0.4);
     }
 
     .proyecto h3 {
@@ -170,37 +180,16 @@
     }
 
     .vista {
-      min-height: 220px;
-      display: grid;
-      place-items: center;
       overflow: hidden;
+      background: #11182a;
       border: 1px solid rgba(104, 213, 255, 0.22);
       border-radius: 16px;
-      background: linear-gradient(145deg, #172543, #11182a);
     }
 
     .vista img {
       display: block;
       width: 100%;
       height: auto;
-    }
-
-    .vista-texto {
-      padding: 25px;
-      text-align: center;
-    }
-
-    .vista-texto strong {
-      display: block;
-      color: var(--azul);
-      font-size: 26px;
-      letter-spacing: 2px;
-    }
-
-    .vista-texto span {
-      display: block;
-      margin-top: 10px;
-      color: var(--suave);
     }
 
     .habilidades {
@@ -266,7 +255,9 @@
 
     <section class="seccion" id="proyectos">
       <h2>Mis proyectos</h2>
-      <p class="subtitulo">Un proyecto familiar y una demo de práctica.</p>
+      <p class="subtitulo">
+        Un proyecto familiar y dos demos de práctica.
+      </p>
 
       <article class="proyecto">
         <div>
@@ -294,15 +285,11 @@
         </div>
 
         <div class="vista">
-          <div class="vista-texto">
-            <strong><div class="vista">
-  <img
-    src="tyjuasrip-preview.png"
-    alt="Vista previa de la página de viajes Tyjuasrip"
-  >
-</div></strong>
-            <span>Viajes y experiencias</span>
-          </div>
+          <img
+            src="tyjuasrip-preview.png"
+            alt="Vista previa de la página de viajes Tyjuasrip"
+            loading="lazy"
+          >
         </div>
       </article>
 
@@ -332,9 +319,45 @@
         </div>
 
         <div class="vista">
-  <img
-    src="cafe-preview.png"
-    alt="Vista previa de la demo Miga Café">
+          <img
+            src="barberia-preview.png"
+            alt="Vista previa de la demo Norte Barber Studio"
+            loading="lazy"
+          >
+        </div>
+      </article>
+
+      <article class="proyecto">
+        <div>
+          <span class="tipo">Proyecto de práctica</span>
+          <h3>Miga Café</h3>
+          <p>
+            Demo ficticia de una cafetería con menú de ejemplo,
+            ilustración en CSS y animaciones al desplazarse.
+          </p>
+
+          <a
+            class="boton boton-secundario"
+            href="https://elmemaser.github.io/mi-portafolio/cafe-demo.html"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Ver demo de cafetería
+          </a>
+
+          <div class="habilidades">
+            <span>HTML</span>
+            <span>CSS</span>
+            <span>Animaciones</span>
+          </div>
+        </div>
+
+        <div class="vista">
+          <img
+            src="cafe-preview.png"
+            alt="Vista previa de la demo Miga Café"
+            loading="lazy"
+          >
         </div>
       </article>
     </section>
