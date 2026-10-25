@@ -10,10 +10,11 @@
     :root {
       --fondo: #11110f;
       --tarjeta: #1d1c19;
-      --tarjeta-clara: #26231e;
+      --tarjeta-clara: #27241f;
       --texto: #f4efe5;
       --suave: #b9b0a2;
       --dorado: #d4a65a;
+      --dorado-claro: #f0ce8b;
       --borde: rgba(255, 255, 255, 0.12);
     }
 
@@ -23,16 +24,22 @@
 
     html {
       scroll-behavior: smooth;
-      scroll-padding-top: 85px;
+      scroll-padding-top: 90px;
     }
 
     body {
       margin: 0;
+      min-height: 100vh;
       color: var(--texto);
       background:
-        radial-gradient(ellipse at 80% 8%, rgba(212, 166, 90, 0.10), transparent 30%),
+        radial-gradient(ellipse at 80% 5%, rgba(212, 166, 90, 0.12), transparent 32%),
+        radial-gradient(ellipse at 10% 35%, rgba(212, 166, 90, 0.06), transparent 28%),
         var(--fondo);
       font-family: Arial, sans-serif;
+    }
+
+    a {
+      color: inherit;
     }
 
     main {
@@ -48,10 +55,10 @@
       justify-content: space-between;
       align-items: center;
       gap: 20px;
-      padding: 19px 0;
-      background: rgba(17, 17, 15, 0.94);
+      padding: 18px 0;
+      background: rgba(17, 17, 15, 0.93);
       border-bottom: 1px solid var(--borde);
-      backdrop-filter: blur(12px);
+      backdrop-filter: blur(14px);
     }
 
     .marca {
@@ -76,33 +83,50 @@
       color: var(--suave);
       font-size: 13px;
       text-decoration: none;
+      transition: color 0.2s;
     }
 
     nav a:hover {
-      color: var(--dorado);
+      color: var(--dorado-claro);
     }
 
     .aviso {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
       padding: 8px 12px;
-      color: var(--dorado);
-      border: 1px solid rgba(212, 166, 90, 0.45);
+      color: var(--dorado-claro);
+      border: 1px solid rgba(212, 166, 90, 0.4);
       border-radius: 999px;
+      background: rgba(212, 166, 90, 0.06);
       font-size: 11px;
       font-weight: bold;
       letter-spacing: 1.2px;
     }
 
+    .aviso::before {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--dorado);
+      box-shadow: 0 0 12px var(--dorado);
+      content: "";
+    }
+
     .hero {
       display: grid;
       grid-template-columns: 1.1fr 0.9fr;
-      gap: 45px;
+      gap: 48px;
       align-items: center;
-      padding: 75px 0 90px;
+      padding: 76px 0 90px;
+    }
+
+    .hero-texto {
+      animation: aparecer 0.8s ease-out both;
     }
 
     h1 {
-      max-width: 680px;
+      max-width: 690px;
       margin: 22px 0;
       font-size: clamp(46px, 7vw, 82px);
       line-height: 0.96;
@@ -122,12 +146,17 @@
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
-      margin-top: 25px;
+      margin-top: 26px;
     }
 
     .boton {
-      display: inline-block;
-      padding: 13px 18px;
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      overflow: hidden;
+      padding: 13px 19px;
       color: #17130c;
       background: var(--dorado);
       border: 1px solid var(--dorado);
@@ -135,12 +164,32 @@
       font-size: 14px;
       font-weight: bold;
       text-decoration: none;
-      transition: transform 0.2s, background 0.2s;
+      transition:
+        transform 0.22s ease,
+        background 0.22s ease,
+        box-shadow 0.22s ease;
+    }
+
+    .boton::after {
+      position: absolute;
+      top: -50%;
+      left: -70%;
+      width: 45%;
+      height: 200%;
+      background: rgba(255, 255, 255, 0.3);
+      content: "";
+      transform: rotate(22deg);
+      transition: left 0.5s ease;
     }
 
     .boton:hover {
-      transform: translateY(-2px);
-      background: #e8bd75;
+      transform: translateY(-3px);
+      background: var(--dorado-claro);
+      box-shadow: 0 10px 28px rgba(212, 166, 90, 0.18);
+    }
+
+    .boton:hover::after {
+      left: 130%;
     }
 
     .boton-secundario {
@@ -163,30 +212,57 @@
       border: 1px solid var(--borde);
       border-radius: 18px;
       background:
-        radial-gradient(circle at 50% 42%, rgba(212, 166, 90, 0.32), transparent 35%),
-        linear-gradient(145deg, #393126, #1a1916 70%);
+        radial-gradient(circle at 50% 42%, rgba(212, 166, 90, 0.29), transparent 36%),
+        linear-gradient(145deg, #393126, #1a1916 72%);
+      animation: aparecer 0.9s 0.15s ease-out both;
     }
 
-    .visual::before,
-    .visual::after {
+    .aro {
       position: absolute;
-      width: 230px;
-      height: 230px;
-      border: 1px solid rgba(212, 166, 90, 0.27);
+      width: 245px;
+      height: 245px;
+      border: 1px solid rgba(240, 206, 139, 0.45);
       border-radius: 50%;
+      animation: girar 22s linear infinite;
+    }
+
+    .aro::before,
+    .aro::after {
+      position: absolute;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--dorado-claro);
+      box-shadow: 0 0 18px var(--dorado);
       content: "";
     }
 
-    .visual::after {
-      width: 300px;
-      height: 300px;
+    .aro::before {
+      top: 25px;
+      left: 35px;
     }
 
-    .visual strong {
+    .aro::after {
+      right: 22px;
+      bottom: 50px;
+    }
+
+    .aro-externo {
+      width: 310px;
+      height: 310px;
+      border-color: rgba(240, 206, 139, 0.18);
+      animation-direction: reverse;
+      animation-duration: 32s;
+    }
+
+    .letra-logo {
       z-index: 1;
       color: rgba(244, 239, 229, 0.9);
       font-size: clamp(150px, 22vw, 230px);
+      font-weight: 900;
       line-height: 1;
+      text-shadow: 0 0 50px rgba(212, 166, 90, 0.25);
+      animation: flotar 5s ease-in-out infinite;
     }
 
     .visual-etiqueta {
@@ -194,12 +270,12 @@
       right: 18px;
       bottom: 18px;
       color: var(--suave);
-      font-size: 11px;
+      font-size: 10px;
       letter-spacing: 2px;
     }
 
     .seccion {
-      padding: 65px 0;
+      padding: 66px 0;
       border-top: 1px solid var(--borde);
     }
 
@@ -217,11 +293,20 @@
       text-transform: uppercase;
     }
 
-    .encabezado-seccion p {
-      max-width: 420px;
+    .encabezado-seccion > p {
+      max-width: 430px;
       margin: 0;
       color: var(--suave);
-      line-height: 1.6;
+      line-height: 1.65;
+    }
+
+    .numero {
+      display: block;
+      margin-bottom: 10px;
+      color: var(--dorado);
+      font-size: 11px;
+      font-weight: bold;
+      letter-spacing: 2px;
     }
 
     .servicios {
@@ -235,12 +320,16 @@
       border: 1px solid var(--borde);
       border-radius: 12px;
       background: var(--tarjeta);
-      transition: transform 0.2s, border-color 0.2s;
+      transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
     }
 
     .servicio:hover {
-      transform: translateY(-4px);
-      border-color: rgba(212, 166, 90, 0.55);
+      transform: translateY(-6px);
+      border-color: rgba(212, 166, 90, 0.6);
+      box-shadow: 0 16px 35px rgba(0, 0, 0, 0.24);
     }
 
     .servicio-cabecera {
@@ -250,14 +339,8 @@
       align-items: center;
     }
 
-    .numero {
-      color: var(--dorado);
-      font-size: 12px;
-      letter-spacing: 2px;
-    }
-
     .precio {
-      color: var(--dorado);
+      color: var(--dorado-claro);
       font-weight: bold;
       white-space: nowrap;
     }
@@ -286,7 +369,8 @@
     }
 
     .estilo {
-      min-height: 210px;
+      position: relative;
+      min-height: 230px;
       display: flex;
       flex-direction: column;
       justify-content: end;
@@ -295,24 +379,30 @@
       border: 1px solid var(--borde);
       border-radius: 12px;
       background:
-        linear-gradient(0deg, rgba(0, 0, 0, 0.8), transparent),
+        linear-gradient(0deg, rgba(0, 0, 0, 0.85), transparent 85%),
         radial-gradient(circle at 50% 20%, #806440, #30291f 55%, #191815);
+      transition: transform 0.25s ease, border-color 0.25s ease;
     }
 
     .estilo:nth-child(2) {
       background:
-        linear-gradient(0deg, rgba(0, 0, 0, 0.8), transparent),
+        linear-gradient(0deg, rgba(0, 0, 0, 0.85), transparent 85%),
         radial-gradient(circle at 50% 20%, #62605b, #302f2c 55%, #191815);
     }
 
     .estilo:nth-child(3) {
       background:
-        linear-gradient(0deg, rgba(0, 0, 0, 0.8), transparent),
+        linear-gradient(0deg, rgba(0, 0, 0, 0.85), transparent 85%),
         radial-gradient(circle at 50% 20%, #8b704b, #373024 55%, #191815);
     }
 
+    .estilo:hover {
+      transform: translateY(-5px) scale(1.01);
+      border-color: rgba(212, 166, 90, 0.6);
+    }
+
     .estilo span {
-      color: var(--dorado);
+      color: var(--dorado-claro);
       font-size: 11px;
       font-weight: bold;
       letter-spacing: 2px;
@@ -324,23 +414,28 @@
       font-size: 23px;
     }
 
-    .experiencia {
+    .pasos {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 16px;
     }
 
-    .detalle {
-      padding: 22px;
+    .paso {
+      padding: 23px;
       border-left: 2px solid var(--dorado);
-      background: var(--tarjeta);
+      background: linear-gradient(100deg, var(--tarjeta), rgba(29, 28, 25, 0.5));
+      transition: transform 0.22s ease;
     }
 
-    .detalle h3 {
+    .paso:hover {
+      transform: translateX(5px);
+    }
+
+    .paso h3 {
       margin: 0 0 10px;
     }
 
-    .detalle p {
+    .paso p {
       margin: 0;
       color: var(--suave);
       line-height: 1.6;
@@ -357,6 +452,12 @@
       border: 1px solid var(--borde);
       border-radius: 9px;
       background: var(--tarjeta);
+      transition: border-color 0.2s ease;
+    }
+
+    details[open],
+    details:hover {
+      border-color: rgba(212, 166, 90, 0.55);
     }
 
     summary {
@@ -372,10 +473,18 @@
     }
 
     .contacto {
-      padding: 32px;
-      border: 1px solid rgba(212, 166, 90, 0.35);
+      position: relative;
+      overflow: hidden;
+      padding: 34px;
+      border: 1px solid rgba(212, 166, 90, 0.4);
       border-radius: 14px;
-      background: linear-gradient(120deg, #292319, #1d1c19);
+      background:
+        radial-gradient(ellipse at 100% 0%, rgba(212, 166, 90, 0.15), transparent 50%),
+        linear-gradient(120deg, #292319, #1d1c19);
+    }
+
+    .contacto h2 {
+      max-width: 650px;
     }
 
     footer {
@@ -386,6 +495,34 @@
       color: var(--suave);
       border-top: 1px solid var(--borde);
       font-size: 12px;
+    }
+
+    @keyframes aparecer {
+      from {
+        opacity: 0;
+        transform: translateY(22px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes girar {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes flotar {
+      0%, 100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-9px);
+      }
     }
 
     @media (max-width: 760px) {
@@ -400,7 +537,7 @@
       }
 
       .visual {
-        min-height: 260px;
+        min-height: 270px;
       }
 
       .servicios {
@@ -408,7 +545,7 @@
       }
 
       .estilos,
-      .experiencia {
+      .pasos {
         grid-template-columns: 1fr;
       }
 
@@ -432,7 +569,7 @@
       }
 
       .contacto {
-        padding: 22px;
+        padding: 23px;
       }
 
       footer {
@@ -441,33 +578,33 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
-      html {
-        scroll-behavior: auto;
-      }
-
-      .servicio,
-      .boton {
-        transition: none;
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
       }
     }
   </style>
 </head>
 
 <body>
-  <main>
+  <main id="inicio">
     <header>
       <div class="marca">NORTE <span>BARBER STUDIO</span></div>
 
       <nav aria-label="Navegación principal">
         <a href="#servicios">Servicios</a>
         <a href="#estilos">Estilos</a>
-        <a href="#experiencia">La experiencia</a>
-        <a href="#preguntas">Preguntas</a>
+        <a href="#experiencia">Experiencia</a>
+        <a href="#preguntas">Dudas</a>
       </nav>
     </header>
 
     <section class="hero">
-      <div>
+      <div class="hero-texto">
         <span class="aviso">DEMO DE PORTAFOLIO · NEGOCIO FICTICIO</span>
 
         <h1>Un corte con <span class="dorado">carácter.</span></h1>
@@ -484,7 +621,9 @@
       </div>
 
       <div class="visual" aria-label="Diseño gráfico de Norte Barber Studio">
-        <strong>N</strong>
+        <div class="aro"></div>
+        <div class="aro aro-externo"></div>
+        <strong class="letra-logo">N</strong>
         <span class="visual-etiqueta">ESTILO · DETALLE · PERSONALIDAD</span>
       </div>
     </section>
@@ -537,6 +676,24 @@
           <h3>Corte + barba</h3>
           <p>Una sesión completa para renovar tu estilo.</p>
         </article>
+
+        <article class="servicio">
+          <div class="servicio-cabecera">
+            <span class="numero">05 · DETALLE</span>
+            <span class="precio">$90 MXN*</span>
+          </div>
+          <h3>Perfilado rápido</h3>
+          <p>Un retoque de contornos para mantener el look.</p>
+        </article>
+
+        <article class="servicio">
+          <div class="servicio-cabecera">
+            <span class="numero">06 · INFANTIL</span>
+            <span class="precio">$160 MXN*</span>
+          </div>
+          <h3>Corte infantil</h3>
+          <p>Un corte cómodo y adaptado a cada estilo.</p>
+        </article>
       </div>
 
       <p class="nota">*Precios ficticios de muestra; no son una oferta real.</p>
@@ -550,7 +707,7 @@
         </div>
         <p>
           Una sección visual para presentar ideas de corte.
-          Las opciones son ejemplos de esta demo.
+          Todas las opciones son ejemplos de esta demo.
         </p>
       </div>
 
@@ -578,22 +735,26 @@
           <span class="numero">03 / LA EXPERIENCIA</span>
           <h2>Detalles que cuentan</h2>
         </div>
+        <p>La página también puede explicar qué hace especial al negocio.</p>
       </div>
 
-      <div class="experiencia">
-        <article class="detalle">
-          <h3>Atención personal</h3>
-          <p>La idea es conocer el estilo que buscas antes de empezar.</p>
+      <div class="pasos">
+        <article class="paso">
+          <span class="numero">PASO 01</span>
+          <h3>Platicamos</h3>
+          <p>La idea es entender el estilo que buscas antes de empezar.</p>
         </article>
 
-        <article class="detalle">
-          <h3>Buen ambiente</h3>
-          <p>Un espacio cómodo, cuidado y con personalidad propia.</p>
+        <article class="paso">
+          <span class="numero">PASO 02</span>
+          <h3>Diseñamos</h3>
+          <p>Se elige el corte y se cuidan los detalles durante el proceso.</p>
         </article>
 
-        <article class="detalle">
-          <h3>Acabado limpio</h3>
-          <p>Revisar los detalles finales hace que el corte luzca mejor.</p>
+        <article class="paso">
+          <span class="numero">PASO 03</span>
+          <h3>Terminamos</h3>
+          <p>Se revisa el resultado y se comparte cómo mantener el estilo.</p>
         </article>
       </div>
     </section>
@@ -609,17 +770,23 @@
       <div class="preguntas">
         <details>
           <summary>¿Necesito reservar?</summary>
-          <p>En un sitio real, aquí se explicarían las opciones de reserva.</p>
+          <p>
+            En un sitio real, aquí se explicarían las opciones de reserva
+            y disponibilidad.
+          </p>
         </details>
 
         <details>
           <summary>¿Puedo pedir un estilo específico?</summary>
-          <p>Sí. En esta demo, la página invita a describir el estilo deseado.</p>
+          <p>
+            Sí. Esta demo muestra cómo explicar que el cliente puede
+            describir el estilo que busca.
+          </p>
         </details>
 
         <details>
           <summary>¿Los precios son reales?</summary>
-          <p>No. Son datos de muestra para practicar el diseño de la página.</p>
+          <p>No. Son precios ficticios para practicar el diseño.</p>
         </details>
       </div>
     </section>
@@ -629,10 +796,10 @@
         <span class="numero">05 / CONTACTO</span>
         <h2>¿Listo para un cambio de estilo?</h2>
         <p class="texto-seccion">
-          Esta página es una demo ficticia y no recibe citas.
-          No hay una barbería real detrás de este diseño.
+          Esta página es una demo ficticia: no representa una barbería real
+          y no recibe citas.
         </p>
-        <a class="boton" href="#inicio">Volver arriba</a>
+        <a class="boton boton-secundario" href="#inicio">Volver arriba ↑</a>
       </div>
     </section>
 
