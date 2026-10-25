@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#090d1a">
   <title>Mi portafolio web</title>
 
   <style>
@@ -36,7 +37,7 @@
     }
 
     main {
-      width: min(1050px, 100% - 40px);
+      width: min(1050px, calc(100% - 40px));
       margin: auto;
     }
 
@@ -58,25 +59,25 @@
     }
 
     .enlace-contacto {
+      padding: 10px 16px;
       color: var(--texto);
       text-decoration: none;
       border: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: 999px;
-      padding: 10px 16px;
     }
 
     .hero {
-      padding: 90px 0 75px;
       max-width: 760px;
+      padding: 90px 0 75px;
     }
 
     .etiqueta {
       display: inline-block;
+      padding: 8px 13px;
       color: var(--azul);
       background: rgba(104, 213, 255, 0.1);
       border: 1px solid rgba(104, 213, 255, 0.24);
       border-radius: 999px;
-      padding: 8px 13px;
       font-size: 13px;
       font-weight: 700;
       letter-spacing: 1px;
@@ -113,9 +114,9 @@
     .boton {
       display: inline-block;
       padding: 13px 19px;
-      border-radius: 12px;
       color: #07111c;
       background: linear-gradient(100deg, var(--azul), var(--verde));
+      border-radius: 12px;
       font-weight: 800;
       text-decoration: none;
       transition: transform 0.2s, box-shadow 0.2s;
@@ -142,8 +143,8 @@
     }
 
     .subtitulo {
-      color: var(--suave);
       margin-top: 0;
+      color: var(--suave);
     }
 
     .proyecto {
@@ -153,9 +154,9 @@
       align-items: center;
       padding: 30px;
       margin-top: 24px;
+      background: var(--tarjeta);
       border: 1px solid rgba(255, 255, 255, 0.13);
       border-radius: 22px;
-      background: var(--tarjeta);
       box-shadow: 0 20px 70px rgba(0, 0, 0, 0.24);
     }
 
@@ -178,29 +179,16 @@
     }
 
     .vista {
-      min-height: 220px;
-      display: grid;
-      place-items: center;
-      padding: 24px;
-      text-align: center;
+      overflow: hidden;
+      background: #11182a;
       border: 1px solid rgba(104, 213, 255, 0.22);
       border-radius: 17px;
-      background:
-        radial-gradient(circle at 50% 0%, rgba(104, 213, 255, 0.23), transparent 60%),
-        linear-gradient(145deg, #172543, #11182a);
     }
 
-    .vista strong {
+    .vista img {
       display: block;
-      color: var(--azul);
-      font-size: 26px;
-      letter-spacing: 2px;
-    }
-
-    .vista span {
-      display: block;
-      margin-top: 10px;
-      color: var(--suave);
+      width: 100%;
+      height: auto;
     }
 
     .habilidades {
@@ -213,9 +201,9 @@
     .habilidades span {
       padding: 8px 11px;
       color: #dce7ff;
+      background: rgba(255, 255, 255, 0.05);
       border: 1px solid rgba(255, 255, 255, 0.13);
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.05);
       font-size: 13px;
     }
 
@@ -276,7 +264,9 @@
 
     <section class="seccion" id="proyectos">
       <h2>Proyecto destacado</h2>
-      <p class="subtitulo">Un proyecto familiar con el que practiqué diseño web.</p>
+      <p class="subtitulo">
+        Un proyecto familiar con el que practiqué diseño web.
+      </p>
 
       <article class="proyecto">
         <div>
@@ -304,17 +294,20 @@
         </div>
 
         <div class="vista">
-          <div>
-            <strong>TYJUASRIP</strong>
-            <span>Viajes y experiencias</span>
-          </div>
+          <img
+            src="tyjuasrip-preview.png"
+            alt="Vista previa de la página de viajes Tyjuasrip"
+          >
         </div>
       </article>
     </section>
 
     <section class="seccion" id="contacto">
       <h2>¿Quieres una página para tu negocio?</h2>
-      <p class="subtitulo">mandame mensaje y nos ponemos de acuerdo.</p>
+      <p class="subtitulo">
+        contactame y nos ponemos de acuerdo.
+      </p>
+
       <a
         class="boton"
         href="https://wa.me/526645598254"
