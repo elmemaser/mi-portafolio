@@ -917,53 +917,53 @@
   </main>
 
   <script>
-    const elementos = document.querySelectorAll(".reveal");
-    const reducirMovimiento = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
+  const elementos = document.querySelectorAll(".reveal");
+  const reducirMovimiento = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
 
-    if (reducirMovimiento || !("IntersectionObserver" in window)) {
-      elementos.forEach((elemento) => elemento.classList.add("visible"));
-    } else {
-      const observador = new IntersectionObserver(
-        (entradas, observer) => {
-          entradas.forEach((entrada) => {
-            if (entrada.isIntersecting) {
-              entrada.target.classList.add("visible");
-              observer.unobserve(entrada.target);
-            }
-          });
-        },
-        {
-          threshold: 0.14,
-          rootMargin: "0px 0px -35px 0px"
-        }
-      );
-
-      elementos.forEach((elemento) => observador.observe(elemento));
-    }
-
-    const barra = document.getElementById("barraProgreso");
-    let actualizando = false;
-
-    function actualizarProgreso() {
-      const recorrido =
-        document.documentElement.scrollHeight - window.innerHeight;
-      const porcentaje =
-        recorrido > 0 ? (window.scrollY / recorrido) * 100 : 0;
-
-      barra.style.width = porcentaje + "%";
-      actualizando = false;
-    }
-
-    window.addEventListener("scroll", () => {
-      if (!actualizando) {
-        window.requestAnimationFrame(actualizarProgreso);
-        actualizando = true;
+  if (reducirMovimiento || !("IntersectionObserver" in window)) {
+    elementos.forEach((elemento) => elemento.classList.add("visible"));
+  } else {
+    const observador = new IntersectionObserver(
+      (entradas) => {
+        entradas.forEach((entrada) => {
+          entrada.target.classList.toggle(
+            "visible",
+            entrada.isIntersecting
+          );
+        });
+      },
+      {
+        threshold: 0.14,
+        rootMargin: "0px 0px -35px 0px"
       }
-    });
+    );
 
-    actualizarProgreso();
-  </script>
+    elementos.forEach((elemento) => observador.observe(elemento));
+  }
+
+  const barra = document.getElementById("barraProgreso");
+  let actualizando = false;
+
+  function actualizarProgreso() {
+    const recorrido =
+      document.documentElement.scrollHeight - window.innerHeight;
+    const porcentaje =
+      recorrido > 0 ? (window.scrollY / recorrido) * 100 : 0;
+
+    barra.style.width = porcentaje + "%";
+    actualizando = false;
+  }
+
+  window.addEventListener("scroll", () => {
+    if (!actualizando) {
+      window.requestAnimationFrame(actualizarProgreso);
+      actualizando = true;
+    }
+  });
+
+  actualizarProgreso();
+</script>
 </body>
 </html>
