@@ -3,12 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#11110f">
   <title>Norte Barber Studio — Demo</title>
 
   <style>
     :root {
       --fondo: #11110f;
       --tarjeta: #1d1c19;
+      --tarjeta-clara: #26231e;
       --texto: #f4efe5;
       --suave: #b9b0a2;
       --dorado: #d4a65a;
@@ -21,31 +23,42 @@
 
     html {
       scroll-behavior: smooth;
+      scroll-padding-top: 85px;
     }
 
     body {
       margin: 0;
       color: var(--texto);
-      background: var(--fondo);
+      background:
+        radial-gradient(ellipse at 80% 8%, rgba(212, 166, 90, 0.10), transparent 30%),
+        var(--fondo);
       font-family: Arial, sans-serif;
     }
 
     main {
-      width: min(1100px, calc(100% - 40px));
+      width: min(1120px, calc(100% - 40px));
       margin: auto;
     }
 
     header {
+      position: sticky;
+      top: 0;
+      z-index: 5;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 25px 0;
+      gap: 20px;
+      padding: 19px 0;
+      background: rgba(17, 17, 15, 0.94);
       border-bottom: 1px solid var(--borde);
+      backdrop-filter: blur(12px);
     }
 
     .marca {
+      color: var(--texto);
       font-weight: 900;
       letter-spacing: 2px;
+      white-space: nowrap;
     }
 
     .marca span,
@@ -55,13 +68,14 @@
 
     nav {
       display: flex;
-      gap: 22px;
+      flex-wrap: wrap;
+      gap: 18px;
     }
 
     nav a {
       color: var(--suave);
+      font-size: 13px;
       text-decoration: none;
-      font-size: 14px;
     }
 
     nav a:hover {
@@ -70,13 +84,13 @@
 
     .aviso {
       display: inline-block;
-      margin-top: 28px;
       padding: 8px 12px;
       color: var(--dorado);
       border: 1px solid rgba(212, 166, 90, 0.45);
       border-radius: 999px;
-      font-size: 12px;
-      letter-spacing: 1px;
+      font-size: 11px;
+      font-weight: bold;
+      letter-spacing: 1.2px;
     }
 
     .hero {
@@ -84,43 +98,65 @@
       grid-template-columns: 1.1fr 0.9fr;
       gap: 45px;
       align-items: center;
-      padding: 70px 0 90px;
+      padding: 75px 0 90px;
     }
 
     h1 {
-      max-width: 650px;
-      margin: 20px 0;
-      font-size: clamp(44px, 7vw, 78px);
-      line-height: 0.98;
-      letter-spacing: -3px;
+      max-width: 680px;
+      margin: 22px 0;
+      font-size: clamp(46px, 7vw, 82px);
+      line-height: 0.96;
+      letter-spacing: -4px;
       text-transform: uppercase;
     }
 
     .hero p,
     .texto-seccion {
-      max-width: 560px;
+      max-width: 600px;
       color: var(--suave);
-      font-size: 17px;
-      line-height: 1.7;
+      font-size: 16px;
+      line-height: 1.75;
+    }
+
+    .botones {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 25px;
     }
 
     .boton {
       display: inline-block;
-      margin-top: 18px;
-      padding: 14px 20px;
+      padding: 13px 18px;
       color: #17130c;
       background: var(--dorado);
+      border: 1px solid var(--dorado);
       border-radius: 7px;
+      font-size: 14px;
       font-weight: bold;
       text-decoration: none;
+      transition: transform 0.2s, background 0.2s;
     }
 
     .boton:hover {
+      transform: translateY(-2px);
       background: #e8bd75;
     }
 
+    .boton-secundario {
+      color: var(--texto);
+      background: transparent;
+      border-color: var(--borde);
+    }
+
+    .boton-secundario:hover {
+      color: #17130c;
+      border-color: var(--dorado);
+    }
+
     .visual {
-      min-height: 350px;
+      position: relative;
+      min-height: 365px;
       display: grid;
       place-items: center;
       overflow: hidden;
@@ -131,10 +167,35 @@
         linear-gradient(145deg, #393126, #1a1916 70%);
     }
 
+    .visual::before,
+    .visual::after {
+      position: absolute;
+      width: 230px;
+      height: 230px;
+      border: 1px solid rgba(212, 166, 90, 0.27);
+      border-radius: 50%;
+      content: "";
+    }
+
+    .visual::after {
+      width: 300px;
+      height: 300px;
+    }
+
     .visual strong {
+      z-index: 1;
       color: rgba(244, 239, 229, 0.9);
-      font-size: clamp(110px, 20vw, 210px);
+      font-size: clamp(150px, 22vw, 230px);
       line-height: 1;
+    }
+
+    .visual-etiqueta {
+      position: absolute;
+      right: 18px;
+      bottom: 18px;
+      color: var(--suave);
+      font-size: 11px;
+      letter-spacing: 2px;
     }
 
     .seccion {
@@ -142,17 +203,31 @@
       border-top: 1px solid var(--borde);
     }
 
+    .encabezado-seccion {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 25px;
+      margin-bottom: 28px;
+    }
+
     .seccion h2 {
-      margin: 0 0 12px;
+      margin: 0;
       font-size: clamp(30px, 5vw, 46px);
       text-transform: uppercase;
     }
 
+    .encabezado-seccion p {
+      max-width: 420px;
+      margin: 0;
+      color: var(--suave);
+      line-height: 1.6;
+    }
+
     .servicios {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 16px;
-      margin-top: 28px;
     }
 
     .servicio {
@@ -160,62 +235,219 @@
       border: 1px solid var(--borde);
       border-radius: 12px;
       background: var(--tarjeta);
+      transition: transform 0.2s, border-color 0.2s;
     }
 
-    .servicio .numero {
+    .servicio:hover {
+      transform: translateY(-4px);
+      border-color: rgba(212, 166, 90, 0.55);
+    }
+
+    .servicio-cabecera {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      align-items: center;
+    }
+
+    .numero {
       color: var(--dorado);
-      font-size: 13px;
+      font-size: 12px;
       letter-spacing: 2px;
     }
 
+    .precio {
+      color: var(--dorado);
+      font-weight: bold;
+      white-space: nowrap;
+    }
+
     .servicio h3 {
-      margin: 18px 0 8px;
+      margin: 20px 0 8px;
       font-size: 21px;
     }
 
     .servicio p {
+      margin: 0;
+      color: var(--suave);
+      line-height: 1.6;
+    }
+
+    .nota {
+      margin-top: 16px;
+      color: var(--suave);
+      font-size: 12px;
+    }
+
+    .estilos {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .estilo {
+      min-height: 210px;
+      display: flex;
+      flex-direction: column;
+      justify-content: end;
+      padding: 22px;
+      overflow: hidden;
+      border: 1px solid var(--borde);
+      border-radius: 12px;
+      background:
+        linear-gradient(0deg, rgba(0, 0, 0, 0.8), transparent),
+        radial-gradient(circle at 50% 20%, #806440, #30291f 55%, #191815);
+    }
+
+    .estilo:nth-child(2) {
+      background:
+        linear-gradient(0deg, rgba(0, 0, 0, 0.8), transparent),
+        radial-gradient(circle at 50% 20%, #62605b, #302f2c 55%, #191815);
+    }
+
+    .estilo:nth-child(3) {
+      background:
+        linear-gradient(0deg, rgba(0, 0, 0, 0.8), transparent),
+        radial-gradient(circle at 50% 20%, #8b704b, #373024 55%, #191815);
+    }
+
+    .estilo span {
+      color: var(--dorado);
+      font-size: 11px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .estilo h3 {
+      margin: 8px 0 0;
+      font-size: 23px;
+    }
+
+    .experiencia {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .detalle {
+      padding: 22px;
+      border-left: 2px solid var(--dorado);
+      background: var(--tarjeta);
+    }
+
+    .detalle h3 {
+      margin: 0 0 10px;
+    }
+
+    .detalle p {
+      margin: 0;
+      color: var(--suave);
+      line-height: 1.6;
+    }
+
+    .preguntas {
+      display: grid;
+      gap: 10px;
+      margin-top: 25px;
+    }
+
+    details {
+      padding: 18px 20px;
+      border: 1px solid var(--borde);
+      border-radius: 9px;
+      background: var(--tarjeta);
+    }
+
+    summary {
+      color: var(--texto);
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    details p {
       margin-bottom: 0;
       color: var(--suave);
       line-height: 1.6;
     }
 
     .contacto {
-      padding: 30px;
+      padding: 32px;
       border: 1px solid rgba(212, 166, 90, 0.35);
       border-radius: 14px;
       background: linear-gradient(120deg, #292319, #1d1c19);
     }
 
     footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
       padding: 26px 0;
       color: var(--suave);
-      font-size: 13px;
+      border-top: 1px solid var(--borde);
+      font-size: 12px;
     }
 
-    @media (max-width: 720px) {
-      nav {
-        gap: 12px;
+    @media (max-width: 760px) {
+      header {
+        align-items: flex-start;
+        flex-direction: column;
       }
 
       .hero {
         grid-template-columns: 1fr;
-        padding: 45px 0 60px;
+        padding: 50px 0 65px;
       }
 
       .visual {
-        min-height: 230px;
+        min-height: 260px;
       }
 
       .servicios {
         grid-template-columns: 1fr;
       }
+
+      .estilos,
+      .experiencia {
+        grid-template-columns: 1fr;
+      }
+
+      .encabezado-seccion {
+        align-items: flex-start;
+        flex-direction: column;
+      }
     }
 
     @media (max-width: 430px) {
-      header {
-        align-items: flex-start;
-        gap: 18px;
+      main {
+        width: calc(100% - 28px);
+      }
+
+      nav {
+        gap: 12px;
+      }
+
+      h1 {
+        letter-spacing: -2px;
+      }
+
+      .contacto {
+        padding: 22px;
+      }
+
+      footer {
         flex-direction: column;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      .servicio,
+      .boton {
+        transition: none;
       }
     }
   </style>
@@ -226,70 +458,187 @@
     <header>
       <div class="marca">NORTE <span>BARBER STUDIO</span></div>
 
-      <nav>
+      <nav aria-label="Navegación principal">
         <a href="#servicios">Servicios</a>
-        <a href="#contacto">Contacto</a>
+        <a href="#estilos">Estilos</a>
+        <a href="#experiencia">La experiencia</a>
+        <a href="#preguntas">Preguntas</a>
       </nav>
     </header>
 
     <section class="hero">
       <div>
-        <span class="aviso">SITIO DE PRÁCTICA · NEGOCIO FICTICIO</span>
+        <span class="aviso">DEMO DE PORTAFOLIO · NEGOCIO FICTICIO</span>
 
         <h1>Un corte con <span class="dorado">carácter.</span></h1>
 
         <p>
-          Un concepto de barbería moderna: estilo clásico, atención
-          personalizada y un espacio para renovar tu look.
+          Un concepto de barbería moderna con inspiración clásica,
+          atención personalizada y detalles cuidados.
         </p>
 
-        <a class="boton" href="#servicios">Conocer servicios</a>
+        <div class="botones">
+          <a class="boton" href="#servicios">Explorar servicios</a>
+          <a class="boton boton-secundario" href="#contacto">Ver contacto demo</a>
+        </div>
       </div>
 
       <div class="visual" aria-label="Diseño gráfico de Norte Barber Studio">
         <strong>N</strong>
+        <span class="visual-etiqueta">ESTILO · DETALLE · PERSONALIDAD</span>
       </div>
     </section>
 
     <section class="seccion" id="servicios">
-      <h2>Servicios</h2>
-      <p class="texto-seccion">
-        Estos servicios son ejemplos para mostrar el diseño de la página.
-      </p>
+      <div class="encabezado-seccion">
+        <div>
+          <span class="numero">01 / SERVICIOS</span>
+          <h2>Elige tu estilo</h2>
+        </div>
+        <p>
+          Servicios y precios de ejemplo para mostrar cómo podría verse
+          el menú de una barbería.
+        </p>
+      </div>
 
       <div class="servicios">
         <article class="servicio">
-          <span class="numero">01 / CLÁSICO</span>
+          <div class="servicio-cabecera">
+            <span class="numero">01 · CLÁSICO</span>
+            <span class="precio">$180 MXN*</span>
+          </div>
           <h3>Corte clásico</h3>
-          <p>Un estilo limpio y personalizado para todos los días.</p>
+          <p>Un corte limpio, personalizado y fácil de mantener.</p>
         </article>
 
         <article class="servicio">
-          <span class="numero">02 / FADE</span>
+          <div class="servicio-cabecera">
+            <span class="numero">02 · FADE</span>
+            <span class="precio">$220 MXN*</span>
+          </div>
           <h3>Degradado</h3>
-          <p>Transiciones cuidadas y un acabado moderno.</p>
+          <p>Transiciones cuidadas para un acabado moderno.</p>
         </article>
 
         <article class="servicio">
-          <span class="numero">03 / BARBA</span>
+          <div class="servicio-cabecera">
+            <span class="numero">03 · BARBA</span>
+            <span class="precio">$140 MXN*</span>
+          </div>
           <h3>Barba y perfilado</h3>
-          <p>Detalles definidos para completar tu estilo.</p>
+          <p>Definición de contornos y arreglo de barba.</p>
         </article>
+
+        <article class="servicio">
+          <div class="servicio-cabecera">
+            <span class="numero">04 · COMBO</span>
+            <span class="precio">$320 MXN*</span>
+          </div>
+          <h3>Corte + barba</h3>
+          <p>Una sesión completa para renovar tu estilo.</p>
+        </article>
+      </div>
+
+      <p class="nota">*Precios ficticios de muestra; no son una oferta real.</p>
+    </section>
+
+    <section class="seccion" id="estilos">
+      <div class="encabezado-seccion">
+        <div>
+          <span class="numero">02 / INSPIRACIÓN</span>
+          <h2>Estilos populares</h2>
+        </div>
+        <p>
+          Una sección visual para presentar ideas de corte.
+          Las opciones son ejemplos de esta demo.
+        </p>
+      </div>
+
+      <div class="estilos">
+        <article class="estilo">
+          <span>Preciso y moderno</span>
+          <h3>Low fade</h3>
+        </article>
+
+        <article class="estilo">
+          <span>Clásico renovado</span>
+          <h3>Side part</h3>
+        </article>
+
+        <article class="estilo">
+          <span>Textura natural</span>
+          <h3>Crop texturizado</h3>
+        </article>
+      </div>
+    </section>
+
+    <section class="seccion" id="experiencia">
+      <div class="encabezado-seccion">
+        <div>
+          <span class="numero">03 / LA EXPERIENCIA</span>
+          <h2>Detalles que cuentan</h2>
+        </div>
+      </div>
+
+      <div class="experiencia">
+        <article class="detalle">
+          <h3>Atención personal</h3>
+          <p>La idea es conocer el estilo que buscas antes de empezar.</p>
+        </article>
+
+        <article class="detalle">
+          <h3>Buen ambiente</h3>
+          <p>Un espacio cómodo, cuidado y con personalidad propia.</p>
+        </article>
+
+        <article class="detalle">
+          <h3>Acabado limpio</h3>
+          <p>Revisar los detalles finales hace que el corte luzca mejor.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="seccion" id="preguntas">
+      <div class="encabezado-seccion">
+        <div>
+          <span class="numero">04 / DUDAS</span>
+          <h2>Preguntas frecuentes</h2>
+        </div>
+      </div>
+
+      <div class="preguntas">
+        <details>
+          <summary>¿Necesito reservar?</summary>
+          <p>En un sitio real, aquí se explicarían las opciones de reserva.</p>
+        </details>
+
+        <details>
+          <summary>¿Puedo pedir un estilo específico?</summary>
+          <p>Sí. En esta demo, la página invita a describir el estilo deseado.</p>
+        </details>
+
+        <details>
+          <summary>¿Los precios son reales?</summary>
+          <p>No. Son datos de muestra para practicar el diseño de la página.</p>
+        </details>
       </div>
     </section>
 
     <section class="seccion" id="contacto">
       <div class="contacto">
-        <h2>Contacto</h2>
+        <span class="numero">05 / CONTACTO</span>
+        <h2>¿Listo para un cambio de estilo?</h2>
         <p class="texto-seccion">
-          Esta es una demo: todavía no recibe citas y no representa
-          una barbería real.
+          Esta página es una demo ficticia y no recibe citas.
+          No hay una barbería real detrás de este diseño.
         </p>
+        <a class="boton" href="#inicio">Volver arriba</a>
       </div>
     </section>
 
     <footer>
-      Demo de práctica creada para mi portafolio web.
+      <span>NORTE BARBER STUDIO</span>
+      <span>Demo ficticia creada para practicar diseño web.</span>
     </footer>
   </main>
 </body>
