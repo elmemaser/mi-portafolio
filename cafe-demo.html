@@ -3,17 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#211713">
-  <title>Bruma Café — Demo</title>
+  <meta name="theme-color" content="#f7f4eb">
+  <title>Miga Café — Demo</title>
+
+  <script>
+    document.documentElement.classList.add("js");
+  </script>
 
   <style>
     :root {
-      --fondo: #211713;
-      --tarjeta: #30221b;
-      --crema: #f5ead8;
-      --suave: #c6b49e;
-      --naranja: #dd9062;
-      --borde: rgba(245, 234, 216, 0.15);
+      --fondo: #f7f4eb;
+      --papel: #fffdf7;
+      --verde: #315b46;
+      --verde-claro: #dce9d9;
+      --coral: #e68158;
+      --amarillo: #f2ca68;
+      --tinta: #26352c;
+      --suave: #68766c;
+      --borde: rgba(49, 91, 70, 0.17);
     }
 
     * {
@@ -27,41 +34,57 @@
 
     body {
       margin: 0;
-      color: var(--crema);
+      color: var(--tinta);
       background:
-        radial-gradient(ellipse at 85% 5%, rgba(221, 144, 98, 0.16), transparent 32%),
+        radial-gradient(ellipse at 10% 10%, rgba(242, 202, 104, 0.18), transparent 28%),
+        radial-gradient(ellipse at 88% 35%, rgba(220, 233, 217, 0.55), transparent 32%),
         var(--fondo);
-      font-family: Georgia, "Times New Roman", serif;
+      font-family: Arial, sans-serif;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .barra-progreso {
+      position: fixed;
+      inset: 0 auto auto 0;
+      z-index: 20;
+      width: 0;
+      height: 4px;
+      background: var(--coral);
+      box-shadow: 0 0 12px rgba(230, 129, 88, 0.45);
     }
 
     main {
-      width: min(1100px, calc(100% - 40px));
+      width: min(1120px, calc(100% - 40px));
       margin: auto;
     }
 
     header {
       position: sticky;
       top: 0;
-      z-index: 5;
+      z-index: 10;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 20px;
-      padding: 20px 0;
-      background: rgba(33, 23, 19, 0.94);
+      gap: 22px;
+      padding: 18px 0;
+      background: rgba(247, 244, 235, 0.92);
       border-bottom: 1px solid var(--borde);
       backdrop-filter: blur(12px);
     }
 
     .marca {
-      font-size: 18px;
+      color: var(--verde);
+      font-family: Georgia, serif;
+      font-size: 21px;
       font-weight: bold;
-      letter-spacing: 2px;
+      letter-spacing: 1px;
     }
 
-    .marca span,
-    .acento {
-      color: var(--naranja);
+    .marca span {
+      color: var(--coral);
     }
 
     nav {
@@ -72,138 +95,249 @@
 
     nav a {
       color: var(--suave);
-      font-family: Arial, sans-serif;
       font-size: 13px;
       text-decoration: none;
       transition: color 0.2s;
     }
 
     nav a:hover {
-      color: var(--naranja);
+      color: var(--coral);
     }
 
     .hero {
       display: grid;
       grid-template-columns: 1.05fr 0.95fr;
-      gap: 45px;
+      gap: 44px;
       align-items: center;
-      padding: 75px 0 90px;
+      min-height: 610px;
+      padding: 65px 0 80px;
     }
 
-    .etiqueta {
-      color: var(--naranja);
-      font-family: Arial, sans-serif;
+    .sello {
+      display: inline-block;
+      padding: 8px 12px;
+      color: var(--verde);
+      background: var(--verde-claro);
+      border-radius: 999px;
       font-size: 11px;
       font-weight: bold;
-      letter-spacing: 2px;
+      letter-spacing: 1px;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: Georgia, "Times New Roman", serif;
     }
 
     h1 {
-      margin: 20px 0;
+      max-width: 680px;
+      margin: 23px 0;
+      color: var(--verde);
       font-size: clamp(48px, 7vw, 82px);
-      line-height: 0.98;
+      font-weight: normal;
+      line-height: 0.99;
       letter-spacing: -3px;
+    }
+
+    h1 em {
+      color: var(--coral);
       font-weight: normal;
     }
 
-    .hero p,
-    .texto-seccion,
-    .producto p {
+    .hero-texto p,
+    .texto-seccion {
+      max-width: 570px;
       color: var(--suave);
-      font-family: Arial, sans-serif;
+      font-size: 16px;
       line-height: 1.75;
     }
 
-    .hero p {
-      max-width: 540px;
-      font-size: 16px;
+    .botones {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 25px;
     }
 
     .boton {
-      display: inline-block;
-      margin-top: 18px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
       padding: 13px 18px;
-      color: #211713;
-      background: var(--naranja);
-      border-radius: 5px;
-      font-family: Arial, sans-serif;
+      color: white;
+      background: var(--verde);
+      border: 2px solid var(--verde);
+      border-radius: 999px;
       font-size: 13px;
       font-weight: bold;
       text-decoration: none;
-      transition: transform 0.2s, background 0.2s;
+      transition:
+        transform 0.22s ease,
+        background 0.22s ease,
+        box-shadow 0.22s ease;
     }
 
     .boton:hover {
-      transform: translateY(-3px);
-      background: #edaa7f;
+      transform: translateY(-4px) scale(1.02);
+      background: #244734;
+      box-shadow: 0 10px 22px rgba(49, 91, 70, 0.2);
     }
 
-    .visual {
+    .boton-secundario {
+      color: var(--verde);
+      background: transparent;
+    }
+
+    .boton-secundario:hover {
+      color: white;
+    }
+
+    .escena {
       position: relative;
-      min-height: 350px;
+      min-height: 410px;
       display: grid;
       place-items: center;
       overflow: hidden;
-      border: 1px solid var(--borde);
-      border-radius: 160px 160px 16px 16px;
+      border-radius: 48% 48% 22px 22px;
       background:
-        radial-gradient(circle at 50% 42%, rgba(221, 144, 98, 0.31), transparent 36%),
-        linear-gradient(145deg, #493329, #2a1d17 75%);
-      animation: aparecer 0.9s 0.15s ease-out both;
+        radial-gradient(circle at 52% 35%, #f2ca68 0 19%, transparent 19.4%),
+        linear-gradient(180deg, #dce9d9 0 53%, #adc6a8 53% 100%);
+      box-shadow: 0 22px 45px rgba(49, 91, 70, 0.12);
     }
 
-    .grano {
+    .sol {
+      position: absolute;
+      top: 56px;
+      right: 55px;
+      width: 92px;
+      height: 92px;
+      border-radius: 50%;
+      background: #fff3c7;
+      animation: respirar 5s ease-in-out infinite;
+    }
+
+    .taza {
       position: relative;
-      width: 100px;
-      height: 145px;
-      border: 2px solid rgba(245, 234, 216, 0.75);
-      border-radius: 50%;
-      background: linear-gradient(135deg, #b66943, #593426);
-      box-shadow: 0 18px 60px rgba(0, 0, 0, 0.38);
-      transform: rotate(35deg);
-      animation: flotar 5s ease-in-out infinite;
+      z-index: 2;
+      width: 190px;
+      height: 142px;
+      margin-top: 66px;
+      border: 7px solid var(--verde);
+      border-radius: 12px 12px 48px 48px;
+      background: var(--papel);
+      box-shadow: 0 18px 35px rgba(38, 53, 44, 0.16);
+      animation: flotar 4s ease-in-out infinite;
     }
 
-    .grano::after {
+    .taza::before {
       position: absolute;
-      top: 8px;
-      left: 47px;
-      width: 3px;
-      height: 125px;
-      border-radius: 50%;
-      background: rgba(245, 234, 216, 0.7);
+      top: 16px;
+      right: -58px;
+      width: 48px;
+      height: 54px;
+      border: 8px solid var(--verde);
+      border-left: 0;
+      border-radius: 0 28px 28px 0;
       content: "";
-      transform: rotate(7deg);
     }
 
-    .visual-texto {
+    .taza::after {
       position: absolute;
-      right: 20px;
-      bottom: 20px;
-      color: var(--suave);
-      font-family: Arial, sans-serif;
+      top: -8px;
+      left: -7px;
+      width: 190px;
+      height: 24px;
+      border: 7px solid var(--verde);
+      border-radius: 50%;
+      background: #8b583c;
+      content: "";
+    }
+
+    .platillo {
+      position: absolute;
+      z-index: 1;
+      bottom: 70px;
+      width: 275px;
+      height: 28px;
+      border: 5px solid var(--verde);
+      border-radius: 50%;
+      background: var(--papel);
+    }
+
+    .vapor {
+      position: absolute;
+      top: 75px;
+      left: 50%;
+      display: flex;
+      gap: 20px;
+      transform: translateX(-50%);
+    }
+
+    .vapor i {
+      display: block;
+      width: 13px;
+      height: 55px;
+      border-left: 3px solid rgba(255, 253, 247, 0.9);
+      border-radius: 50%;
+      animation: vapor 2.4s ease-in-out infinite;
+    }
+
+    .vapor i:nth-child(2) {
+      height: 70px;
+      animation-delay: 0.35s;
+    }
+
+    .vapor i:nth-child(3) {
+      animation-delay: 0.7s;
+    }
+
+    .escena-etiqueta {
+      position: absolute;
+      right: 18px;
+      bottom: 17px;
+      color: var(--verde);
       font-size: 10px;
-      letter-spacing: 2px;
+      font-weight: bold;
+      letter-spacing: 1.5px;
+    }
+
+    .cinta {
+      overflow: hidden;
+      color: white;
+      background: var(--coral);
+      transform: rotate(-1deg) scale(1.02);
+    }
+
+    .cinta-contenido {
+      width: max-content;
+      display: flex;
+      gap: 28px;
+      padding: 14px 0;
+      animation: deslizar 28s linear infinite;
+      font-family: Georgia, serif;
+      font-size: 16px;
+      letter-spacing: 1px;
     }
 
     .seccion {
-      padding: 65px 0;
-      border-top: 1px solid var(--borde);
+      padding: 78px 0;
+      border-bottom: 1px solid var(--borde);
     }
 
     .encabezado {
       display: flex;
       justify-content: space-between;
       align-items: end;
-      gap: 24px;
+      gap: 25px;
       margin-bottom: 28px;
     }
 
     .numero {
       display: block;
       margin-bottom: 10px;
-      color: var(--naranja);
-      font-family: Arial, sans-serif;
+      color: var(--coral);
       font-size: 11px;
       font-weight: bold;
       letter-spacing: 2px;
@@ -211,12 +345,14 @@
 
     h2 {
       margin: 0;
-      font-size: clamp(32px, 5vw, 48px);
+      color: var(--verde);
+      font-size: clamp(34px, 5vw, 52px);
       font-weight: normal;
+      line-height: 1.05;
     }
 
     .encabezado p {
-      max-width: 420px;
+      max-width: 430px;
       margin: 0;
     }
 
@@ -227,34 +363,39 @@
     }
 
     .producto {
-      padding: 23px;
+      position: relative;
+      padding: 22px;
+      overflow: hidden;
+      background: var(--papel);
       border: 1px solid var(--borde);
-      border-radius: 9px;
-      background: var(--tarjeta);
-      transition: transform 0.22s, border-color 0.22s;
+      border-radius: 16px;
+      box-shadow: 0 7px 20px rgba(49, 91, 70, 0.04);
+      transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
     }
 
     .producto:hover {
-      transform: translateY(-5px);
-      border-color: rgba(221, 144, 98, 0.6);
+      transform: translateY(-7px) rotate(-0.4deg);
+      box-shadow: 0 18px 30px rgba(49, 91, 70, 0.12);
     }
 
     .producto-cabecera {
       display: flex;
       justify-content: space-between;
-      gap: 15px;
       align-items: baseline;
+      gap: 15px;
     }
 
     .producto h3 {
       margin: 0;
+      color: var(--verde);
       font-size: 21px;
       font-weight: normal;
     }
 
     .precio {
-      color: var(--naranja);
-      font-family: Arial, sans-serif;
+      color: var(--coral);
       font-size: 14px;
       font-weight: bold;
       white-space: nowrap;
@@ -262,70 +403,94 @@
 
     .producto p {
       margin-bottom: 0;
+      color: var(--suave);
       font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .icono-cafe {
+      display: inline-grid;
+      width: 34px;
+      height: 34px;
+      margin-bottom: 14px;
+      place-items: center;
+      color: var(--verde);
+      background: var(--verde-claro);
+      border-radius: 50%;
     }
 
     .nota {
       margin-top: 16px;
       color: var(--suave);
-      font-family: Arial, sans-serif;
       font-size: 12px;
     }
 
     .historia {
       display: grid;
-      grid-template-columns: 0.8fr 1.2fr;
-      gap: 35px;
-      align-items: center;
-      padding: 30px;
-      border: 1px solid var(--borde);
-      border-radius: 12px;
-      background: linear-gradient(120deg, #3b2920, var(--tarjeta));
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 28px;
+      align-items: stretch;
     }
 
-    .historia-marca {
+    .historia-arte {
+      min-height: 300px;
       display: grid;
-      min-height: 220px;
       place-items: center;
-      color: var(--naranja);
-      border: 1px solid rgba(221, 144, 98, 0.35);
-      border-radius: 8px;
-      font-size: 48px;
-      letter-spacing: 5px;
+      color: var(--verde);
+      background:
+        radial-gradient(circle at 50% 45%, #f2ca68 0 18%, transparent 18.5%),
+        linear-gradient(145deg, #dce9d9, #a9c5a6);
+      border-radius: 45% 45% 16px 16px;
+      font-family: Georgia, serif;
+      font-size: 76px;
     }
 
-    .historia p {
+    .historia-texto {
+      padding: 30px;
+      background: var(--papel);
+      border-radius: 16px;
+    }
+
+    .historia-texto p {
       color: var(--suave);
-      font-family: Arial, sans-serif;
       line-height: 1.8;
     }
 
-    .pasos {
+    .valores {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 14px;
     }
 
-    .paso {
+    .valor {
       padding: 22px;
-      border-left: 2px solid var(--naranja);
-      background: var(--tarjeta);
-      transition: transform 0.2s;
+      background: var(--verde);
+      border-radius: 16px;
+      color: white;
+      transition: transform 0.22s ease;
     }
 
-    .paso:hover {
-      transform: translateX(5px);
+    .valor:nth-child(2) {
+      color: var(--tinta);
+      background: var(--amarillo, #f2ca68);
     }
 
-    .paso h3 {
+    .valor:nth-child(3) {
+      background: var(--coral);
+    }
+
+    .valor:hover {
+      transform: translateY(-6px) rotate(1deg);
+    }
+
+    .valor h3 {
       margin: 0 0 10px;
+      font-size: 22px;
       font-weight: normal;
     }
 
-    .paso p {
+    .valor p {
       margin: 0;
-      color: var(--suave);
-      font-family: Arial, sans-serif;
       font-size: 14px;
       line-height: 1.6;
     }
@@ -337,48 +502,87 @@
     }
 
     details {
-      padding: 18px;
+      padding: 18px 20px;
+      background: var(--papel);
       border: 1px solid var(--borde);
-      border-radius: 8px;
-      background: var(--tarjeta);
+      border-radius: 12px;
     }
 
     summary {
+      color: var(--verde);
       cursor: pointer;
-      font-family: Arial, sans-serif;
       font-weight: bold;
     }
 
     details p {
+      margin-bottom: 0;
       color: var(--suave);
-      font-family: Arial, sans-serif;
       line-height: 1.6;
     }
 
     .contacto {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 25px;
       padding: 30px;
-      border: 1px solid rgba(221, 144, 98, 0.4);
-      border-radius: 12px;
-      background:
-        radial-gradient(ellipse at 100% 0%, rgba(221, 144, 98, 0.15), transparent 50%),
-        var(--tarjeta);
+      background: var(--verde-claro);
+      border-radius: 18px;
+    }
+
+    .contacto h2 {
+      max-width: 650px;
+    }
+
+    .contacto p {
+      color: var(--suave);
+      line-height: 1.6;
     }
 
     footer {
       display: flex;
       justify-content: space-between;
       gap: 20px;
-      padding: 24px 0;
+      padding: 26px 0;
       color: var(--suave);
-      border-top: 1px solid var(--borde);
-      font-family: Arial, sans-serif;
       font-size: 12px;
     }
 
-    @keyframes aparecer {
+    /* Animaciones al entrar en pantalla */
+    .js .reveal {
+      opacity: 0;
+      transform: translateY(35px);
+      transition:
+        opacity 0.75s ease,
+        transform 0.75s cubic-bezier(0.2, 0.75, 0.25, 1);
+      transition-delay: var(--delay, 0ms);
+    }
+
+    .js .reveal-izquierda {
+      transform: translateX(-35px);
+    }
+
+    .js .reveal-derecha {
+      transform: translateX(35px);
+    }
+
+    .js .reveal.visible {
+      opacity: 1;
+      transform: translate(0, 0);
+    }
+
+    .entrada {
+      animation: entrada 0.9s cubic-bezier(0.2, 0.75, 0.25, 1) both;
+    }
+
+    .entrada-tardia {
+      animation-delay: 0.2s;
+    }
+
+    @keyframes entrada {
       from {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translateY(28px);
       }
 
       to {
@@ -389,11 +593,43 @@
 
     @keyframes flotar {
       0%, 100% {
-        transform: rotate(35deg) translateY(0);
+        transform: translateY(0);
       }
 
       50% {
-        transform: rotate(35deg) translateY(-10px);
+        transform: translateY(-10px);
+      }
+    }
+
+    @keyframes respirar {
+      0%, 100% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.06);
+      }
+    }
+
+    @keyframes vapor {
+      0% {
+        opacity: 0;
+        transform: translateY(12px) scaleY(0.7);
+      }
+
+      40% {
+        opacity: 0.8;
+      }
+
+      100% {
+        opacity: 0;
+        transform: translateY(-20px) scaleY(1.1);
+      }
+    }
+
+    @keyframes deslizar {
+      to {
+        transform: translateX(-50%);
       }
     }
 
@@ -413,23 +649,35 @@
         padding: 50px 0 65px;
       }
 
-      .visual {
-        min-height: 270px;
+      .escena {
+        min-height: 300px;
       }
 
-      .menu,
-      .pasos {
+      .valores {
         grid-template-columns: 1fr;
+      }
+
+      .contacto {
+        align-items: flex-start;
+        flex-direction: column;
       }
     }
 
-    @media (max-width: 430px) {
+    @media (max-width: 500px) {
       main {
         width: calc(100% - 28px);
       }
 
       nav {
         gap: 12px;
+      }
+
+      h1 {
+        letter-spacing: -2px;
+      }
+
+      .menu {
+        grid-template-columns: 1fr;
       }
 
       footer {
@@ -446,54 +694,80 @@
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
       }
+
+      .js .reveal {
+        opacity: 1;
+        transform: none;
+      }
     }
   </style>
 </head>
 
 <body>
+  <div class="barra-progreso" id="barraProgreso" aria-hidden="true"></div>
+
   <main id="inicio">
     <header>
-      <div class="marca">BRUMA <span>CAFÉ</span></div>
+      <div class="marca">MIGA <span>CAFÉ</span></div>
 
       <nav aria-label="Navegación principal">
         <a href="#menu">Menú</a>
         <a href="#historia">Concepto</a>
-        <a href="#experiencia">Experiencia</a>
+        <a href="#ambiente">Ambiente</a>
         <a href="#preguntas">Dudas</a>
       </nav>
     </header>
 
     <section class="hero">
-      <div>
-        <span class="etiqueta">DEMO DE PORTAFOLIO · CAFETERÍA FICTICIA</span>
-        <h1>Una pausa que sabe a <span class="acento">algo más.</span></h1>
+      <div class="hero-texto entrada">
+        <span class="sello">DEMO DE PORTAFOLIO · CAFETERÍA FICTICIA</span>
+
+        <h1>Una pausa que sabe a <em>algo más.</em></h1>
+
         <p>
-          Un concepto de cafetería acogedora con café, pan recién hecho
-          y un espacio tranquilo para disfrutar el momento.
+          Café recién preparado, pan dulce y un espacio tranquilo
+          para disfrutar cada momento.
         </p>
-        <a class="boton" href="#menu">Descubrir el menú</a>
+
+        <div class="botones">
+          <a class="boton" href="#menu">Ver el menú ↓</a>
+          <a class="boton boton-secundario" href="#contacto">Conocer la demo</a>
+        </div>
       </div>
 
-      <div class="visual" aria-label="Diseño gráfico de Bruma Café">
-        <div class="grano"></div>
-        <span class="visual-texto">CAFÉ · CALMA · MOMENTOS</span>
+      <div class="escena entrada entrada-tardia" aria-label="Ilustración de una taza de café">
+        <div class="sol"></div>
+        <div class="vapor" aria-hidden="true">
+          <i></i><i></i><i></i>
+        </div>
+        <div class="taza"></div>
+        <div class="platillo"></div>
+        <span class="escena-etiqueta">BUEN CAFÉ · BUENA PAUSA</span>
       </div>
     </section>
 
+    <div class="cinta" aria-hidden="true">
+      <div class="cinta-contenido">
+        <span>CAFÉ PREPARADO AL MOMENTO ✳ PAN DULCE ✳ UN RATO PARA TI ✳</span>
+        <span>CAFÉ PREPARADO AL MOMENTO ✳ PAN DULCE ✳ UN RATO PARA TI ✳</span>
+      </div>
+    </div>
+
     <section class="seccion" id="menu">
-      <div class="encabezado">
+      <div class="encabezado reveal">
         <div>
           <span class="numero">01 / MENÚ</span>
           <h2>Algo rico para hoy</h2>
         </div>
         <p class="texto-seccion">
           Bebidas y precios ficticios para mostrar cómo podría verse
-          el menú de un café.
+          el menú de una cafetería.
         </p>
       </div>
 
       <div class="menu">
-        <article class="producto">
+        <article class="producto reveal" style="--delay: 0ms">
+          <span class="icono-cafe">☕</span>
           <div class="producto-cabecera">
             <h3>Espresso</h3>
             <span class="precio">$45 MXN*</span>
@@ -501,7 +775,8 @@
           <p>Café intenso, corto y preparado al momento.</p>
         </article>
 
-        <article class="producto">
+        <article class="producto reveal" style="--delay: 100ms">
+          <span class="icono-cafe">☕</span>
           <div class="producto-cabecera">
             <h3>Latte de vainilla</h3>
             <span class="precio">$65 MXN*</span>
@@ -509,7 +784,8 @@
           <p>Espresso, leche espumada y un toque dulce.</p>
         </article>
 
-        <article class="producto">
+        <article class="producto reveal" style="--delay: 200ms">
+          <span class="icono-cafe">❄</span>
           <div class="producto-cabecera">
             <h3>Cold brew</h3>
             <span class="precio">$70 MXN*</span>
@@ -517,15 +793,17 @@
           <p>Café preparado en frío, suave y refrescante.</p>
         </article>
 
-        <article class="producto">
+        <article class="producto reveal" style="--delay: 300ms">
+          <span class="icono-cafe">🍫</span>
           <div class="producto-cabecera">
             <h3>Chocolate caliente</h3>
             <span class="precio">$60 MXN*</span>
           </div>
-          <p>Chocolate cremoso para acompañar una tarde tranquila.</p>
+          <p>Chocolate cremoso para acompañar la tarde.</p>
         </article>
 
-        <article class="producto">
+        <article class="producto reveal" style="--delay: 100ms">
+          <span class="icono-cafe">🍰</span>
           <div class="producto-cabecera">
             <h3>Pan de elote</h3>
             <span class="precio">$48 MXN*</span>
@@ -533,7 +811,8 @@
           <p>Una rebanada suave para acompañar tu bebida.</p>
         </article>
 
-        <article class="producto">
+        <article class="producto reveal" style="--delay: 200ms">
+          <span class="icono-cafe">🍪</span>
           <div class="producto-cabecera">
             <h3>Galleta de la casa</h3>
             <span class="precio">$35 MXN*</span>
@@ -542,96 +821,149 @@
         </article>
       </div>
 
-      <p class="nota">*Precios ficticios de muestra; no son una oferta real.</p>
+      <p class="nota reveal">*Precios ficticios de muestra; no son una oferta real.</p>
     </section>
 
     <section class="seccion" id="historia">
       <div class="historia">
-        <div class="historia-marca">B.</div>
-        <div>
+        <div class="historia-arte reveal reveal-izquierda">M.</div>
+
+        <div class="historia-texto reveal reveal-derecha">
           <span class="numero">02 / EL CONCEPTO</span>
           <h2>Un lugar para bajar el ritmo</h2>
           <p>
-            Bruma Café es una idea de práctica: un espacio cálido donde
+            Miga Café es una idea de práctica: un espacio cálido donde
             puedes tomar algo rico, platicar o disfrutar un momento tranquilo.
-            Este texto se cambiaría por la historia real del negocio si fuera
-            una página para un cliente.
+            En una página para un negocio real, aquí iría su historia verdadera.
           </p>
+          <a class="boton" href="#ambiente">Conocer el ambiente ↓</a>
         </div>
       </div>
     </section>
 
-    <section class="seccion" id="experiencia">
-      <div class="encabezado">
+    <section class="seccion" id="ambiente">
+      <div class="encabezado reveal">
         <div>
-          <span class="numero">03 / LA EXPERIENCIA</span>
-          <h2>Así sería tu visita</h2>
+          <span class="numero">03 / EL AMBIENTE</span>
+          <h2>Para cada momento</h2>
         </div>
+        <p class="texto-seccion">
+          Una sección para mostrar qué puede hacer especial a un café.
+        </p>
       </div>
 
-      <div class="pasos">
-        <article class="paso">
-          <span class="numero">01</span>
-          <h3>Elige tu bebida</h3>
-          <p>Explora el menú y encuentra algo que se te antoje.</p>
+      <div class="valores">
+        <article class="valor reveal" style="--delay: 0ms">
+          <h3>☀ Una mañana tranquila</h3>
+          <p>Empieza el día con algo rico y un espacio relajado.</p>
         </article>
 
-        <article class="paso">
-          <span class="numero">02</span>
-          <h3>Acompáñala</h3>
-          <p>Combina tu café con una pieza de pan o algo dulce.</p>
+        <article class="valor reveal" style="--delay: 120ms">
+          <h3>📖 Un rato para ti</h3>
+          <p>Lee, conversa o descansa con tu bebida favorita.</p>
         </article>
 
-        <article class="paso">
-          <span class="numero">03</span>
-          <h3>Disfruta el momento</h3>
-          <p>Quédate a conversar, leer o simplemente descansar.</p>
+        <article class="valor reveal" style="--delay: 240ms">
+          <h3>🥐 Algo para compartir</h3>
+          <p>Elige pan dulce y disfruta una pausa acompañado.</p>
         </article>
       </div>
     </section>
 
     <section class="seccion" id="preguntas">
-      <div class="encabezado">
+      <div class="encabezado reveal">
         <div>
           <span class="numero">04 / PREGUNTAS</span>
           <h2>Preguntas frecuentes</h2>
         </div>
       </div>
 
-      <div class="preguntas">
+      <div class="preguntas reveal">
         <details>
           <summary>¿El menú y los precios son reales?</summary>
           <p>No. Son ejemplos inventados para esta demo de portafolio.</p>
         </details>
 
         <details>
-          <summary>¿Dónde está el café?</summary>
-          <p>Bruma Café es ficticio y no tiene una ubicación real.</p>
+          <summary>¿Dónde está Miga Café?</summary>
+          <p>Miga Café es ficticio y no tiene una ubicación real.</p>
         </details>
 
         <details>
-          <summary>¿Puedo pedir por esta página?</summary>
+          <summary>¿Puedo hacer un pedido?</summary>
           <p>No. Esta página es una práctica y no recibe pedidos.</p>
         </details>
       </div>
     </section>
 
     <section class="seccion" id="contacto">
-      <div class="contacto">
-        <span class="numero">05 / CONTACTO</span>
-        <h2>Nos vemos en tu próxima pausa.</h2>
-        <p class="texto-seccion">
-          Esta es una demo ficticia: no representa una cafetería real
-          y no recibe pedidos.
-        </p>
+      <div class="contacto reveal">
+        <div>
+          <span class="numero">05 / CONTACTO</span>
+          <h2>Nos vemos en tu próxima pausa.</h2>
+          <p>
+            Esta es una demo ficticia: no representa una cafetería real
+            y no recibe pedidos.
+          </p>
+        </div>
         <a class="boton" href="#inicio">Volver arriba ↑</a>
       </div>
     </section>
 
     <footer>
-      <span>BRUMA CAFÉ</span>
+      <span>MIGA CAFÉ</span>
       <span>Demo ficticia creada para practicar diseño web.</span>
     </footer>
   </main>
+
+  <script>
+    const elementos = document.querySelectorAll(".reveal");
+    const reducirMovimiento = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    if (reducirMovimiento || !("IntersectionObserver" in window)) {
+      elementos.forEach((elemento) => elemento.classList.add("visible"));
+    } else {
+      const observador = new IntersectionObserver(
+        (entradas, observer) => {
+          entradas.forEach((entrada) => {
+            if (entrada.isIntersecting) {
+              entrada.target.classList.add("visible");
+              observer.unobserve(entrada.target);
+            }
+          });
+        },
+        {
+          threshold: 0.14,
+          rootMargin: "0px 0px -35px 0px"
+        }
+      );
+
+      elementos.forEach((elemento) => observador.observe(elemento));
+    }
+
+    const barra = document.getElementById("barraProgreso");
+    let actualizando = false;
+
+    function actualizarProgreso() {
+      const recorrido =
+        document.documentElement.scrollHeight - window.innerHeight;
+      const porcentaje =
+        recorrido > 0 ? (window.scrollY / recorrido) * 100 : 0;
+
+      barra.style.width = porcentaje + "%";
+      actualizando = false;
+    }
+
+    window.addEventListener("scroll", () => {
+      if (!actualizando) {
+        window.requestAnimationFrame(actualizarProgreso);
+        actualizando = true;
+      }
+    });
+
+    actualizarProgreso();
+  </script>
 </body>
 </html>
