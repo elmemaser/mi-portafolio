@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mi portafolio web</title>
+
   <style>
     body {
       margin: 0;
@@ -18,8 +19,14 @@
       margin: auto;
     }
 
-    h1, h2 {
+    h1,
+    h2 {
       color: #65c8ff;
+    }
+
+    p {
+      line-height: 1.6;
+      color: #d0d9e8;
     }
 
     .proyecto {
@@ -30,12 +37,23 @@
       background: #19263a;
     }
 
-    p {
-      line-height: 1.6;
-      color: #d0d9e8;
+    .boton {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 12px 18px;
+      border-radius: 8px;
+      background: #19a85b;
+      color: white;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .boton:hover {
+      background: #14894a;
     }
   </style>
 </head>
+
 <body>
   <main>
     <h1>Mi portafolio web</h1>
@@ -45,15 +63,24 @@
 
     <section class="proyecto">
       <h2>Página de viajes Tyjuasrip</h2>
-      <p>Proyecto familiar. Practiqué cómo organizar información de tours y diseñar tarjetas para una página web.</p>
+      <p>
+        Practiqué cómo organizar información de tours
+        y diseñar tarjetas para una página web.
+      </p>
     </section>
-  <section class="proyecto">
-  <h2>¿Quieres una página para tu negocio?</h2>
-  <p>Mi papá recibe los mensajes y me ayuda con los proyectos.</p>
-  <a href="https://wa.me/526231165278" target="_blank" rel="noopener noreferrer">
-    Escribir por WhatsApp
-  </a>
-  </section>
-</main>
+
+    <section class="proyecto">
+      <h2>¿Quieres una página para tu negocio?</h2>
+      <p>mandame mensaje y nos ponemos de acuerdo.</p>
+      <a
+        class="boton"
+        href="https://wa.me/6645598254"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        664 559 8254 — WhatsApp
+      </a>
+    </section>
+  </main>
 </body>
 </html>
