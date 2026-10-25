@@ -3,13 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#090d1a">
   <title>Mi portafolio web</title>
 
   <style>
     :root {
       --fondo: #090d1a;
-      --tarjeta: rgba(22, 31, 55, 0.82);
+      --tarjeta: rgba(22, 31, 55, 0.88);
       --texto: #f4f7ff;
       --suave: #aab5ce;
       --azul: #68d5ff;
@@ -27,7 +26,6 @@
 
     body {
       margin: 0;
-      min-height: 100vh;
       color: var(--texto);
       background:
         radial-gradient(ellipse at 12% 8%, rgba(70, 105, 255, 0.22), transparent 34%),
@@ -68,23 +66,20 @@
 
     .hero {
       max-width: 760px;
-      padding: 90px 0 75px;
+      padding: 80px 0 70px;
     }
 
-    .etiqueta {
-      display: inline-block;
-      padding: 8px 13px;
+    .etiqueta,
+    .tipo {
       color: var(--azul);
-      background: rgba(104, 213, 255, 0.1);
-      border: 1px solid rgba(104, 213, 255, 0.24);
-      border-radius: 999px;
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 1px;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
     }
 
     h1 {
-      margin: 22px 0;
+      margin: 20px 0;
       font-size: clamp(42px, 8vw, 76px);
       line-height: 1.02;
       letter-spacing: -3px;
@@ -97,18 +92,23 @@
       -webkit-background-clip: text;
     }
 
+    .descripcion,
+    .subtitulo,
+    .proyecto p {
+      color: var(--suave);
+      line-height: 1.7;
+    }
+
     .descripcion {
       max-width: 620px;
-      color: var(--suave);
       font-size: 18px;
-      line-height: 1.7;
     }
 
     .botones {
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
-      margin-top: 28px;
+      margin-top: 25px;
     }
 
     .boton {
@@ -134,17 +134,17 @@
     }
 
     .seccion {
-      padding: 25px 0 80px;
+      padding: 30px 0 75px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
     }
 
-    .seccion h2 {
+    .seccion > h2 {
       margin-bottom: 8px;
       font-size: 30px;
     }
 
     .subtitulo {
       margin-top: 0;
-      color: var(--suave);
     }
 
     .proyecto {
@@ -152,43 +152,55 @@
       grid-template-columns: 1.1fr 0.9fr;
       gap: 28px;
       align-items: center;
-      padding: 30px;
-      margin-top: 24px;
+      padding: 28px;
+      margin-top: 22px;
       background: var(--tarjeta);
       border: 1px solid rgba(255, 255, 255, 0.13);
-      border-radius: 22px;
-      box-shadow: 0 20px 70px rgba(0, 0, 0, 0.24);
-    }
-
-    .tipo {
-      color: var(--verde);
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
+      border-radius: 20px;
+      box-shadow: 0 20px 70px rgba(0, 0, 0, 0.22);
     }
 
     .proyecto h3 {
       margin: 12px 0;
-      font-size: 27px;
+      font-size: 26px;
     }
 
     .proyecto p {
-      color: var(--suave);
       line-height: 1.7;
     }
 
     .vista {
+      min-height: 220px;
+      display: grid;
+      place-items: center;
       overflow: hidden;
-      background: #11182a;
       border: 1px solid rgba(104, 213, 255, 0.22);
-      border-radius: 17px;
+      border-radius: 16px;
+      background: linear-gradient(145deg, #172543, #11182a);
     }
 
     .vista img {
       display: block;
       width: 100%;
       height: auto;
+    }
+
+    .vista-texto {
+      padding: 25px;
+      text-align: center;
+    }
+
+    .vista-texto strong {
+      display: block;
+      color: var(--azul);
+      font-size: 26px;
+      letter-spacing: 2px;
+    }
+
+    .vista-texto span {
+      display: block;
+      margin-top: 10px;
+      color: var(--suave);
     }
 
     .habilidades {
@@ -216,7 +228,7 @@
 
     @media (max-width: 700px) {
       .hero {
-        padding: 65px 0 50px;
+        padding: 55px 0;
       }
 
       .proyecto {
@@ -226,16 +238,6 @@
 
       h1 {
         letter-spacing: -2px;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      html {
-        scroll-behavior: auto;
-      }
-
-      .boton {
-        transition: none;
       }
     }
   </style>
@@ -257,16 +259,14 @@
       </p>
 
       <div class="botones">
-        <a class="boton" href="#proyectos">Ver mi proyecto</a>
+        <a class="boton" href="#proyectos">Ver mis proyectos</a>
         <a class="boton boton-secundario" href="#contacto">Contactar</a>
       </div>
     </section>
 
     <section class="seccion" id="proyectos">
-      <h2>Proyecto destacado</h2>
-      <p class="subtitulo">
-        Un proyecto familiar con el que practiqué diseño web.
-      </p>
+      <h2>Mis proyectos</h2>
+      <p class="subtitulo">Un proyecto familiar y una demo de práctica.</p>
 
       <article class="proyecto">
         <div>
@@ -294,43 +294,51 @@
         </div>
 
         <div class="vista">
+          <div class="vista-texto">
+            <strong>TYJUASRIP</strong>
+            <span>Viajes y experiencias</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="proyecto">
+        <div>
+          <span class="tipo">Proyecto de práctica</span>
+          <h3>Norte Barber Studio</h3>
+          <p>
+            Demo ficticia de una barbería con servicios, estilos,
+            preguntas frecuentes y animaciones.
+          </p>
+
+          <a
+            class="boton boton-secundario"
+            href="https://elmemaser.github.io/mi-portafolio/barberia-demo.html"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Ver demo de barbería
+          </a>
+
+          <div class="habilidades">
+            <span>HTML</span>
+            <span>CSS</span>
+            <span>Animaciones</span>
+          </div>
+        </div>
+
+        <div class="vista">
           <img
-            src="tyjuasrip-preview.png"
-            alt="Vista previa de la página de viajes Tyjuasrip"
+            src="barberia-preview.png"
+            alt="Vista previa de la demo Norte Barber Studio"
           >
         </div>
-      </article><article class="proyecto">
-  <div>
-    <span class="tipo">Proyecto de práctica</span>
-    <h3>Norte Barber Studio</h3>
-    <p>
-      Demo ficticia de una barbería. Incluye servicios de ejemplo,
-      estilos, preguntas frecuentes y diseño adaptable.
-    </p>
-
-    <a
-      class="boton boton-secundario"
-      href="https://elmemaser.github.io/mi-portafolio/barberia-demo.html"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      Ver demo de barbería
-    </a>
-  </div>
-
-  <div class="vista">
-    <div>
-      <strong>NORTE</strong>
-      <span>BARBER STUDIO · DEMO</span>
-    </div>
-  </div>
-</article>
+      </article>
     </section>
 
     <section class="seccion" id="contacto">
       <h2>¿Quieres una página para tu negocio?</h2>
       <p class="subtitulo">
-        contactame y nos ponemos de acuerdo.
+        Contáctame y nos ponemos de acuerdo.
       </p>
 
       <a
