@@ -3,384 +3,635 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#090d1a">
-  <title>Mi portafolio web</title>
+  <meta name="description" content="Portafolio de diseño web, imágenes y videos para negocios.">
+  <title>Mi portafolio | Diseño para negocios</title>
 
   <style>
     :root {
-      --fondo: #090d1a;
-      --tarjeta: #151f37;
-      --texto: #f4f7ff;
-      --suave: #aab5ce;
-      --azul: #68d5ff;
-      --morado: #a78bfa;
-      --verde: #55e6a5;
+      --fondo: #f5f7fb;
+      --blanco: #ffffff;
+      --texto: #14243a;
+      --suave: #5d6b7e;
+      --azul: #247bc1;
+      --azul-oscuro: #14528b;
+      --borde: #e3e9f1;
+      --sombra: 0 18px 50px rgba(26, 52, 83, 0.09);
     }
 
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     html {
       scroll-behavior: smooth;
-      scroll-padding-top: 80px;
     }
 
     body {
-      margin: 0;
+      background: var(--fondo);
       color: var(--texto);
-      background:
-        radial-gradient(ellipse at 12% 8%, rgba(70, 105, 255, 0.2), transparent 34%),
-        radial-gradient(ellipse at 88% 22%, rgba(151, 93, 255, 0.16), transparent 30%),
-        var(--fondo);
-      font-family: system-ui, Arial, sans-serif;
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.6;
     }
 
-    main {
-      width: min(1050px, calc(100% - 40px));
-      margin: auto;
-    }
-
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 20px;
-      padding: 24px 0;
-    }
-
-    .marca {
-      color: var(--texto);
-      font-weight: 800;
-      letter-spacing: 1px;
-    }
-
-    .marca span {
-      color: var(--azul);
-    }
-
-    .enlace-contacto {
-      padding: 10px 16px;
-      color: var(--texto);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 999px;
+    a {
+      color: inherit;
       text-decoration: none;
     }
 
-    .hero {
-      max-width: 760px;
-      padding: 78px 0 72px;
+    .contenedor {
+      width: min(1100px, calc(100% - 40px));
+      margin: 0 auto;
     }
 
-    .etiqueta,
-    .tipo {
-      color: var(--azul);
-      font-size: 12px;
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(245, 247, 251, 0.9);
+      border-bottom: 1px solid rgba(227, 233, 241, 0.8);
+      backdrop-filter: blur(14px);
+    }
+
+    nav {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      color: var(--azul-oscuro);
       font-weight: 800;
-      letter-spacing: 1.5px;
+      font-size: 1.1rem;
+      letter-spacing: -0.04em;
+    }
+
+    .menu {
+      display: flex;
+      gap: 25px;
+      color: var(--suave);
+      font-size: 0.92rem;
+    }
+
+    .menu a:hover {
+      color: var(--azul);
+    }
+
+    .hero {
+      min-height: 590px;
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      align-items: center;
+      gap: 55px;
+      padding: 80px 0;
+    }
+
+    .etiqueta {
+      display: inline-block;
+      color: var(--azul);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
+      margin-bottom: 20px;
     }
 
     h1 {
-      margin: 20px 0;
-      font-size: clamp(42px, 8vw, 76px);
-      line-height: 1.02;
-      letter-spacing: -3px;
+      max-width: 650px;
+      font-size: clamp(2.8rem, 7vw, 5.6rem);
+      line-height: 0.98;
+      letter-spacing: -0.075em;
+      margin-bottom: 24px;
     }
 
     h1 span {
-      color: transparent;
-      background: linear-gradient(90deg, var(--azul), var(--morado));
-      background-clip: text;
-      -webkit-background-clip: text;
+      color: var(--azul);
     }
 
-    .descripcion,
-    .subtitulo,
-    .proyecto p {
+    .intro {
+      max-width: 540px;
       color: var(--suave);
-      line-height: 1.7;
-    }
-
-    .descripcion {
-      max-width: 620px;
-      font-size: 18px;
+      font-size: 1.1rem;
+      margin-bottom: 30px;
     }
 
     .botones {
       display: flex;
       flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 26px;
+      align-items: center;
+      gap: 14px;
     }
 
     .boton {
-      display: inline-block;
-      padding: 13px 19px;
-      color: #07111c;
-      background: linear-gradient(100deg, var(--azul), var(--verde));
-      border: 1px solid transparent;
-      border-radius: 12px;
-      font-weight: 800;
-      text-decoration: none;
-      transition: transform 0.2s, box-shadow 0.2s;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 22px;
+      border-radius: 999px;
+      background: var(--azul);
+      color: white;
+      font-weight: 700;
+      transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
     }
 
     .boton:hover {
+      background: var(--azul-oscuro);
+      box-shadow: 0 9px 24px rgba(36, 123, 193, 0.22);
       transform: translateY(-3px);
-      box-shadow: 0 10px 30px rgba(104, 213, 255, 0.2);
     }
 
     .boton-secundario {
+      background: var(--blanco);
       color: var(--texto);
-      background: rgba(255, 255, 255, 0.07);
-      border-color: rgba(255, 255, 255, 0.17);
+      border: 1px solid var(--borde);
     }
 
-    .seccion {
-      padding: 32px 0 78px;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    .boton-secundario:hover {
+      background: #edf5fc;
+      color: var(--azul-oscuro);
     }
 
-    .seccion > h2 {
+    .hero-tarjeta {
+      min-height: 370px;
+      padding: 32px;
+      border: 1px solid var(--borde);
+      border-radius: 28px;
+      background:
+        radial-gradient(circle at 80% 15%, rgba(113, 190, 239, 0.35), transparent 28%),
+        linear-gradient(145deg, #eaf4fc, #ffffff 65%);
+      box-shadow: var(--sombra);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+      animation: flotar 5s ease-in-out infinite;
+    }
+
+    .hero-tarjeta small {
+      color: var(--azul);
+      font-weight: 800;
+      letter-spacing: 0.12em;
+    }
+
+    .hero-tarjeta h2 {
+      max-width: 360px;
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      line-height: 1.02;
+      letter-spacing: -0.06em;
+    }
+
+    .circulos {
+      display: flex;
+      gap: 12px;
+    }
+
+    .circulos span {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--azul);
+      opacity: 0.8;
+    }
+
+    .circulos span:nth-child(2) {
+      opacity: 0.45;
+      transform: translateY(-12px);
+    }
+
+    .circulos span:nth-child(3) {
+      opacity: 0.25;
+    }
+
+    section {
+      padding: 78px 0;
+    }
+
+    .encabezado-seccion {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 25px;
+      margin-bottom: 34px;
+    }
+
+    .encabezado-seccion h2 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1;
+      letter-spacing: -0.06em;
+    }
+
+    .encabezado-seccion p {
+      max-width: 430px;
+      color: var(--suave);
+    }
+
+    .rejilla-servicios {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .servicio {
+      min-height: 220px;
+      padding: 26px;
+      border: 1px solid var(--borde);
+      border-radius: 20px;
+      background: var(--blanco);
+      box-shadow: 0 10px 30px rgba(26, 52, 83, 0.04);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+
+    .servicio:hover,
+    .proyecto:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--sombra);
+    }
+
+    .icono {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 18px;
+      border-radius: 15px;
+      background: #eaf4fc;
+      font-size: 1.4rem;
+    }
+
+    .servicio h3 {
       margin-bottom: 8px;
-      font-size: 30px;
+      font-size: 1.2rem;
     }
 
-    .subtitulo {
-      margin-top: 0;
+    .servicio p {
+      color: var(--suave);
+      font-size: 0.95rem;
+    }
+
+    .nota {
+      margin-top: 20px;
+      color: var(--suave);
+      font-size: 0.9rem;
+    }
+
+    .proyectos {
+      display: grid;
+      gap: 20px;
     }
 
     .proyecto {
       display: grid;
-      grid-template-columns: 1fr 0.95fr;
-      gap: 28px;
+      grid-template-columns: 1fr 0.8fr;
+      gap: 30px;
       align-items: center;
-      padding: 28px;
-      margin-top: 22px;
-      background: rgba(22, 31, 55, 0.88);
-      border: 1px solid rgba(255, 255, 255, 0.13);
-      border-radius: 20px;
-      box-shadow: 0 20px 70px rgba(0, 0, 0, 0.2);
-      transition: transform 0.22s, border-color 0.22s;
+      padding: 24px;
+      border: 1px solid var(--borde);
+      border-radius: 22px;
+      background: var(--blanco);
+      transition: transform 0.25s, box-shadow 0.25s;
     }
 
-    .proyecto:hover {
-      transform: translateY(-4px);
-      border-color: rgba(104, 213, 255, 0.4);
+    .tipo {
+      display: inline-block;
+      margin-bottom: 10px;
+      color: var(--azul);
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
     }
 
     .proyecto h3 {
-      margin: 12px 0;
-      font-size: 26px;
+      margin-bottom: 8px;
+      font-size: 1.5rem;
+      letter-spacing: -0.04em;
     }
 
     .proyecto p {
-      line-height: 1.7;
+      margin-bottom: 18px;
+      color: var(--suave);
     }
 
     .vista {
+      min-height: 210px;
       overflow: hidden;
-      background: #11182a;
-      border: 1px solid rgba(104, 213, 255, 0.22);
-      border-radius: 16px;
+      border-radius: 15px;
+      background: #eaf0f7;
     }
 
     .vista img {
       display: block;
       width: 100%;
-      height: auto;
+      height: 100%;
+      min-height: 210px;
+      object-fit: cover;
+      object-position: top;
     }
 
-    .habilidades {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 9px;
-      margin-top: 18px;
+    .vista-sin-imagen {
+      display: grid;
+      place-items: center;
+      padding: 25px;
+      color: var(--azul-oscuro);
+      text-align: center;
+      font-size: 1.4rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #dceefa, #f7fbff);
     }
 
-    .habilidades span {
-      padding: 8px 11px;
-      color: #dce7ff;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.13);
-      border-radius: 999px;
-      font-size: 13px;
+    .contacto {
+      padding: 55px;
+      border-radius: 28px;
+      color: white;
+      background:
+        radial-gradient(circle at 90% 0%, rgba(255,255,255,0.18), transparent 30%),
+        linear-gradient(130deg, #14528b, #247bc1);
+    }
+
+    .contacto h2 {
+      max-width: 650px;
+      margin-bottom: 12px;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      line-height: 1;
+      letter-spacing: -0.06em;
+    }
+
+    .contacto p {
+      max-width: 600px;
+      margin-bottom: 24px;
+      color: rgba(255,255,255,0.82);
+    }
+
+    .contacto .boton {
+      background: white;
+      color: var(--azul-oscuro);
     }
 
     footer {
-      padding: 24px 0 35px;
+      padding: 30px 0;
       color: var(--suave);
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      font-size: 14px;
+      text-align: center;
+      font-size: 0.9rem;
     }
 
-    @media (max-width: 700px) {
+    /* Cada sección vuelve a aparecer al entrar en pantalla, incluso al subir y bajar. */
+    .revelar {
+      opacity: 0;
+      transform: translateY(35px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .revelar.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes flotar {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    @media (max-width: 760px) {
+      .menu {
+        gap: 12px;
+        font-size: 0.82rem;
+      }
+
       .hero {
-        padding: 55px 0;
+        min-height: auto;
+        grid-template-columns: 1fr;
+        gap: 35px;
+        padding: 65px 0;
+      }
+
+      .hero-tarjeta {
+        min-height: 290px;
+      }
+
+      .encabezado-seccion {
+        align-items: start;
+        flex-direction: column;
+      }
+
+      .rejilla-servicios {
+        grid-template-columns: 1fr;
       }
 
       .proyecto {
         grid-template-columns: 1fr;
-        padding: 22px;
       }
 
-      h1 {
-        letter-spacing: -2px;
+      .contacto {
+        padding: 32px 24px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
       }
     }
   </style>
 </head>
 
 <body>
-  <main>
-    <header>
-      <div class="marca">&lt;<span>PORTAFOLIO</span>/&gt;</div>
-      <a class="enlace-contacto" href="#contacto">Contacto</a>
-    </header>
-
-    <section class="hero">
-      <span class="etiqueta">DISEÑO WEB · PROYECTOS</span>
-      <h1>Ideas que toman forma <span>en la web.</span></h1>
-      <p class="descripcion">
-        Estoy aprendiendo a crear páginas web modernas y adaptables.
-        Aquí puedes conocer algunos de mis proyectos.
-      </p>
-
-      <div class="botones">
-        <a class="boton" href="#proyectos">Ver mis proyectos</a>
-        <a class="boton boton-secundario" href="#contacto">Contactar</a>
+  <header>
+    <nav class="contenedor">
+      <a class="logo" href="#">Mi portafolio</a>
+      <div class="menu">
+        <a href="#servicios">Servicios</a>
+        <a href="#proyectos">Proyectos</a>
+        <a href="#contacto">Contacto</a>
       </div>
-    </section>
+    </nav>
+  </header>
 
-    <section class="seccion" id="proyectos">
-      <h2>Mis proyectos</h2>
-      <p class="subtitulo">
-        Un proyecto familiar y dos demos de práctica.
-      </p>
-
-      <article class="proyecto">
-        <div>
-          <span class="tipo">Proyecto familiar</span>
-          <h3>Página de viajes Tyjuasrip</h3>
-          <p>
-            Practiqué cómo organizar información de tours y presentarla
-            en una página clara y fácil de recorrer.
+  <main>
+    <div class="contenedor">
+      <section class="hero">
+        <div class="revelar">
+          <span class="etiqueta">Diseño web para negocios</span>
+          <h1>Tu negocio merece una página <span>que destaque.</span></h1>
+          <p class="intro">
+            Estoy aprendiendo diseño web y creo páginas de práctica y
+            materiales digitales para mostrar negocios en internet.
           </p>
-
-          <a
-            class="boton boton-secundario"
-            href="https://tyjuastipweb123-32.netlify.app/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Ver página de viajes
-          </a>
-
-          <div class="habilidades">
-            <span>HTML</span>
-            <span>CSS</span>
-            <span>Diseño adaptable</span>
+          <div class="botones">
+            <a class="boton" href="#proyectos">Ver mis proyectos ↓</a>
+            <a class="boton boton-secundario" href="#contacto">Hablemos</a>
           </div>
         </div>
 
-        <div class="vista">
-          <img
-            src="tyjuasrip-preview.png"
-            alt="Vista previa de la página de viajes Tyjuasrip"
-            loading="lazy"
-          >
-        </div>
-      </article>
-
-      <article class="proyecto">
-        <div>
-          <span class="tipo">Proyecto de práctica</span>
-          <h3>Norte Barber Studio</h3>
-          <p>
-            Demo ficticia de una barbería con servicios, estilos,
-            preguntas frecuentes y animaciones.
-          </p>
-
-          <a
-            class="boton boton-secundario"
-            href="https://elmemaser.github.io/mi-portafolio/barberia-demo.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Ver demo de barbería
-          </a>
-
-          <div class="habilidades">
-            <span>HTML</span>
-            <span>CSS</span>
-            <span>Animaciones</span>
+        <div class="hero-tarjeta revelar">
+          <small>DISEÑO · IDEAS · NEGOCIOS</small>
+          <h2>Una presencia digital clara y moderna.</h2>
+          <div class="circulos" aria-hidden="true">
+            <span></span><span></span><span></span>
           </div>
         </div>
+      </section>
 
-        <div class="vista">
-          <img
-            src="barberia-preview.png"
-            alt="Vista previa de la demo Norte Barber Studio"
-            loading="lazy"
-          >
-        </div>
-      </article>
-
-      <article class="proyecto">
-        <div>
-          <span class="tipo">Proyecto de práctica</span>
-          <h3>Miga Café</h3>
-          <p>
-            Demo ficticia de una cafetería con menú de ejemplo,
-            ilustración en CSS y animaciones al desplazarse.
-          </p>
-
-          <a
-            class="boton boton-secundario"
-            href="https://elmemaser.github.io/mi-portafolio/cafe-demo.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Ver demo de cafetería
-          </a>
-
-          <div class="habilidades">
-            <span>HTML</span>
-            <span>CSS</span>
-            <span>Animaciones</span>
+      <section id="servicios">
+        <div class="encabezado-seccion revelar">
+          <div>
+            <span class="etiqueta">Lo que puedo crear</span>
+            <h2>Servicios</h2>
           </div>
+          <p>
+            Cada proyecto se acuerda antes de empezar: qué necesitas,
+            qué archivos recibirás y cuánto cuesta.
+          </p>
         </div>
 
-        <div class="vista">
-          <img
-            src="cafe-preview.png"
-            alt="Vista previa de la demo Miga Café"
-            loading="lazy"
-          >
+        <div class="rejilla-servicios">
+          <article class="servicio revelar">
+            <div class="icono">🌐</div>
+            <h3>Páginas web</h3>
+            <p>
+              Páginas sencillas para presentar un negocio, sus servicios,
+              horarios y formas de contacto.
+            </p>
+          </article>
+
+          <article class="servicio revelar">
+            <div class="icono">🎨</div>
+            <h3>Imágenes para redes</h3>
+            <p>
+              Diseños sencillos para promociones, publicaciones o anuncios
+              digitales, según la información que me compartas.
+            </p>
+          </article>
+
+          <article class="servicio revelar">
+            <div class="icono">🎬</div>
+            <h3>Videos cortos</h3>
+            <p>
+              Edición básica de videos breves para mostrar productos,
+              servicios o promociones en redes.
+            </p>
+          </article>
         </div>
-      </article>
-    </section>
 
-    <section class="seccion" id="contacto">
-      <h2>¿Quieres una página para tu negocio?</h2>
-      <p class="subtitulo">
-        Contáctame y nos ponemos de acuerdo.
-      </p>
+        <p class="nota revelar">
+          También estoy practicando prototipos de aplicaciones; por ahora
+          no ofrezco aplicaciones listas para publicar.
+        </p>
+      </section>
 
-      <a
-        class="boton"
-        href="https://wa.me/526645598254"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        664 559 8254 — WhatsApp
-      </a>
-    </section>
+      <section id="proyectos">
+        <div class="encabezado-seccion revelar">
+          <div>
+            <span class="etiqueta">Algunos ejemplos</span>
+            <h2>Mis proyectos</h2>
+          </div>
+          <p>
+            Las demos de barbería y cafetería son ficticias y sirven para
+            mostrar ideas de diseño.
+          </p>
+        </div>
 
-    <footer>
-      Mi portafolio web · Hecho con HTML y CSS
-    </footer>
+        <div class="proyectos">
+          <article class="proyecto revelar">
+            <div>
+              <span class="tipo">Proyecto familiar</span>
+              <h3>Tyjuasrip · Viajes</h3>
+              <p>
+                Página de viajes con información de tours, fechas,
+                precios y contacto.
+              </p>
+              <a class="boton" href="https://tyjuastipweb123-32.netlify.app/"
+                 target="_blank" rel="noopener noreferrer">
+                Ver página de viajes ↗
+              </a>
+            </div>
+            <div class="vista">
+              <img src="tyjuasrip-preview.png"
+                   alt="Vista previa de la página de viajes Tyjuasrip">
+            </div>
+          </article>
+
+          <article class="proyecto revelar">
+            <div>
+              <span class="tipo">Demo ficticia</span>
+              <h3>Norte Barber Studio</h3>
+              <p>
+                Concepto de barbería moderna con servicios, estilos,
+                preguntas frecuentes y diseño adaptable.
+              </p>
+              <a class="boton" href="barberia-demo.html"
+                 target="_blank" rel="noopener noreferrer">
+                Ver demo de barbería ↗
+              </a>
+            </div>
+            <div class="vista">
+              <img src="barberia-preview.png"
+                   alt="Vista previa de la demo Norte Barber Studio">
+            </div>
+          </article>
+
+          <article class="proyecto revelar">
+            <div>
+              <span class="tipo">Demo ficticia</span>
+              <h3>Café · Sitio de práctica</h3>
+              <p>
+                Ejemplo de una página para cafetería, con presentación,
+                menú y datos del negocio.
+              </p>
+              <a class="boton" href="cafe-demo.html"
+                 target="_blank" rel="noopener noreferrer">
+                Ver demo de cafetería ↗
+              </a>
+            </div>
+            <div class="vista">
+              <img src="cafe-preview.png"
+                   alt="Vista previa de la demo de cafetería">
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="contacto">
+        <div class="contacto revelar">
+          <span class="etiqueta" style="color:#d9efff">Contacto</span>
+          <h2>¿Tienes una idea para tu negocio?</h2>
+          <p>
+            Escríbeme para contarme qué necesitas. Primero podemos hablar
+            de la idea, el precio y lo que incluiría el trabajo.
+          </p>
+          <a class="boton"
+             href="https://wa.me/526645598254?text=Hola%2C%20vi%20tu%20portafolio%20y%20quiero%20preguntar%20por%20una%20p%C3%A1gina%20web."
+             target="_blank" rel="noopener noreferrer">
+            Contactar por WhatsApp ↗
+          </a>
+        </div>
+      </section>
+    </div>
   </main>
+
+  <footer>
+    <div class="contenedor">
+      Portafolio de práctica · Diseño web, imágenes y videos
+    </div>
+  </footer>
+
+  <script>
+    const elementos = document.querySelectorAll(".revelar");
+
+    const observador = new IntersectionObserver((entradas) => {
+      entradas.forEach((entrada) => {
+        entrada.target.classList.toggle("visible", entrada.isIntersecting);
+      });
+    }, {
+      threshold: 0.12
+    });
+
+    elementos.forEach((elemento) => observador.observe(elemento));
+  </script>
 </body>
 </html>
