@@ -3,19 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Portafolio de diseño web, imágenes y videos para negocios.">
-  <title>Mi portafolio | Diseño para negocios</title>
+  <meta name="description" content="Portafolio de diseño web y contenido digital para negocios.">
+  <meta name="theme-color" content="#f5f3ed">
+  <title>Portafolio | Diseño digital para negocios</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --fondo: #f5f7fb;
-      --blanco: #ffffff;
-      --texto: #14243a;
-      --suave: #5d6b7e;
-      --azul: #247bc1;
-      --azul-oscuro: #14528b;
-      --borde: #e3e9f1;
-      --sombra: 0 18px 50px rgba(26, 52, 83, 0.09);
+      --paper: #f5f3ed;
+      --white: #fff;
+      --ink: #202d28;
+      --muted: #6b756f;
+      --blue: #788064;
+      --blue-dark: #405448;
+      --blue-pale: #e9e9de;
+      --line: #e3dfd4;
+      --shadow: 0 22px 60px rgba(37, 49, 40, .09);
+      --radius: 22px;
     }
 
     * {
@@ -26,13 +33,14 @@
 
     html {
       scroll-behavior: smooth;
+      scroll-padding-top: 90px;
     }
 
     body {
-      background: var(--fondo);
-      color: var(--texto);
-      font-family: Arial, Helvetica, sans-serif;
-      line-height: 1.6;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'DM Sans', Arial, sans-serif;
+      line-height: 1.65;
     }
 
     a {
@@ -40,555 +48,835 @@
       text-decoration: none;
     }
 
-    .contenedor {
-      width: min(1100px, calc(100% - 40px));
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 48px));
       margin: 0 auto;
     }
 
-    header {
+    .topbar {
       position: sticky;
       top: 0;
-      z-index: 10;
-      background: rgba(245, 247, 251, 0.9);
-      border-bottom: 1px solid rgba(227, 233, 241, 0.8);
+      z-index: 20;
+      background: rgba(245,243,237,.92);
+      border-bottom: 1px solid rgba(227,223,212,.85);
       backdrop-filter: blur(14px);
     }
 
-    nav {
-      min-height: 72px;
+    .nav {
+      min-height: 76px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 20px;
+      gap: 24px;
     }
 
-    .logo {
-      color: var(--azul-oscuro);
-      font-weight: 800;
-      font-size: 1.1rem;
-      letter-spacing: -0.04em;
-    }
-
-    .menu {
+    .brand {
       display: flex;
-      gap: 25px;
-      color: var(--suave);
-      font-size: 0.92rem;
+      align-items: center;
+      gap: 11px;
+      font-family: Manrope, sans-serif;
+      font-weight: 800;
+      letter-spacing: -.04em;
     }
 
-    .menu a:hover {
-      color: var(--azul);
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 11px;
+      background: var(--blue);
+      color: white;
+      font-size: 14px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .nav-links a:hover {
+      color: var(--blue);
+    }
+
+    .nav-links .nav-cta {
+      padding: 10px 17px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--ink);
     }
 
     .hero {
-      min-height: 590px;
       display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
+      grid-template-columns: 1.04fr .96fr;
       align-items: center;
-      gap: 55px;
-      padding: 80px 0;
+      gap: 64px;
+      padding: 92px 0 105px;
     }
 
-    .etiqueta {
-      display: inline-block;
-      color: var(--azul);
-      font-size: 0.78rem;
-      font-weight: 800;
-      letter-spacing: 0.14em;
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 23px;
+      color: var(--blue-dark);
+      font-size: 11px;
+      line-height: 1.4;
+      font-weight: 700;
+      letter-spacing: .16em;
       text-transform: uppercase;
-      margin-bottom: 20px;
+    }
+
+    .eyebrow::before {
+      content: '';
+      width: 22px;
+      height: 1px;
+      background: var(--blue);
+    }
+
+    h1, h2, h3 {
+      font-family: Manrope, 'DM Sans', sans-serif;
     }
 
     h1 {
       max-width: 650px;
-      font-size: clamp(2.8rem, 7vw, 5.6rem);
-      line-height: 0.98;
-      letter-spacing: -0.075em;
-      margin-bottom: 24px;
+      font-size: clamp(48px, 7vw, 82px);
+      letter-spacing: -.075em;
+      line-height: .99;
+      font-weight: 700;
     }
 
-    h1 span {
-      color: var(--azul);
+    h1 em {
+      color: var(--blue);
+      font-style: normal;
     }
 
-    .intro {
-      max-width: 540px;
-      color: var(--suave);
-      font-size: 1.1rem;
-      margin-bottom: 30px;
+    .hero-copy {
+      max-width: 520px;
+      margin-top: 24px;
+      color: var(--muted);
+      font-size: 17px;
     }
 
-    .botones {
+    .actions {
       display: flex;
       flex-wrap: wrap;
-      align-items: center;
-      gap: 14px;
+      gap: 12px;
+      margin-top: 31px;
     }
 
-    .boton {
+    .button {
       display: inline-flex;
+      min-height: 48px;
       align-items: center;
       justify-content: center;
-      min-height: 48px;
-      padding: 0 22px;
+      gap: 9px;
+      padding: 0 20px;
       border-radius: 999px;
-      background: var(--azul);
+      background: var(--blue);
       color: white;
+      font-size: 14px;
       font-weight: 700;
-      transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
+      transition: transform .2s, background .2s, box-shadow .2s;
     }
 
-    .boton:hover {
-      background: var(--azul-oscuro);
-      box-shadow: 0 9px 24px rgba(36, 123, 193, 0.22);
-      transform: translateY(-3px);
+    .button:hover {
+      transform: translateY(-2px);
+      background: var(--blue-dark);
+      box-shadow: 0 10px 24px rgba(64,84,72,.2);
     }
 
-    .boton-secundario {
-      background: var(--blanco);
-      color: var(--texto);
-      border: 1px solid var(--borde);
+    .button.ghost {
+      border: 1px solid var(--line);
+      background: transparent;
+      color: var(--ink);
     }
 
-    .boton-secundario:hover {
-      background: #edf5fc;
-      color: var(--azul-oscuro);
+    .button.ghost:hover {
+      background: white;
+      box-shadow: none;
     }
 
-    .hero-tarjeta {
-      min-height: 370px;
-      padding: 32px;
-      border: 1px solid var(--borde);
-      border-radius: 28px;
-      background:
-        radial-gradient(circle at 80% 15%, rgba(113, 190, 239, 0.35), transparent 28%),
-        linear-gradient(145deg, #eaf4fc, #ffffff 65%);
-      box-shadow: var(--sombra);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      overflow: hidden;
-      animation: flotar 5s ease-in-out infinite;
-    }
-
-    .hero-tarjeta small {
-      color: var(--azul);
-      font-weight: 800;
-      letter-spacing: 0.12em;
-    }
-
-    .hero-tarjeta h2 {
-      max-width: 360px;
-      font-size: clamp(2rem, 4vw, 3.4rem);
-      line-height: 1.02;
-      letter-spacing: -0.06em;
-    }
-
-    .circulos {
-      display: flex;
-      gap: 12px;
-    }
-
-    .circulos span {
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      background: var(--azul);
-      opacity: 0.8;
-    }
-
-    .circulos span:nth-child(2) {
-      opacity: 0.45;
-      transform: translateY(-12px);
-    }
-
-    .circulos span:nth-child(3) {
-      opacity: 0.25;
-    }
-
-    section {
-      padding: 78px 0;
-    }
-
-    .encabezado-seccion {
-      display: flex;
-      justify-content: space-between;
-      align-items: end;
-      gap: 25px;
-      margin-bottom: 34px;
-    }
-
-    .encabezado-seccion h2 {
-      font-size: clamp(2rem, 4vw, 3.2rem);
-      line-height: 1;
-      letter-spacing: -0.06em;
-    }
-
-    .encabezado-seccion p {
-      max-width: 430px;
-      color: var(--suave);
-    }
-
-    .rejilla-servicios {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-
-    .servicio {
-      min-height: 220px;
-      padding: 26px;
-      border: 1px solid var(--borde);
-      border-radius: 20px;
-      background: var(--blanco);
-      box-shadow: 0 10px 30px rgba(26, 52, 83, 0.04);
-      transition: transform 0.25s, box-shadow 0.25s;
-    }
-
-    .servicio:hover,
-    .proyecto:hover {
-      transform: translateY(-6px);
-      box-shadow: var(--sombra);
-    }
-
-    .icono {
-      width: 48px;
-      height: 48px;
+    .hero-visual {
+      position: relative;
+      min-height: 390px;
       display: grid;
       place-items: center;
-      margin-bottom: 18px;
-      border-radius: 15px;
-      background: #eaf4fc;
-      font-size: 1.4rem;
     }
 
-    .servicio h3 {
-      margin-bottom: 8px;
-      font-size: 1.2rem;
+    .visual-card {
+      position: relative;
+      width: min(100%, 440px);
+      min-height: 340px;
+      overflow: hidden;
+      padding: 30px;
+      border: 1px solid #deded2;
+      border-radius: 26px;
+      background: linear-gradient(145deg, #eeeee5, #e0e5d9);
+      box-shadow: var(--shadow);
     }
 
-    .servicio p {
-      color: var(--suave);
-      font-size: 0.95rem;
+    .visual-card::before,
+    .visual-card::after {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
     }
 
-    .nota {
-      margin-top: 20px;
-      color: var(--suave);
-      font-size: 0.9rem;
+    .visual-card::before {
+      width: 280px;
+      height: 280px;
+      top: 35px;
+      right: -25px;
+      background: #ccd2bd;
     }
 
-    .proyectos {
-      display: grid;
-      gap: 20px;
+    .visual-card::after {
+      width: 200px;
+      height: 200px;
+      bottom: -45px;
+      left: 12px;
+      background: #647664;
+      opacity: .92;
     }
 
-    .proyecto {
-      display: grid;
-      grid-template-columns: 1fr 0.8fr;
+    .visual-label {
+      position: relative;
+      z-index: 1;
+      color: var(--blue-dark);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .16em;
+    }
+
+    .visual-title {
+      position: absolute;
+      z-index: 2;
+      right: 28px;
+      bottom: 27px;
+      left: 28px;
+      color: white;
+      font-family: Manrope, sans-serif;
+      font-size: 27px;
+      line-height: 1.15;
+      font-weight: 700;
+    }
+
+    .visual-window {
+      position: absolute;
+      z-index: 2;
+      top: 86px;
+      left: 35px;
+      width: 55%;
+      padding: 12px;
+      border: 1px solid rgba(255,255,255,.8);
+      border-radius: 13px;
+      background: rgba(255,255,255,.84);
+      box-shadow: 0 12px 25px rgba(39,49,40,.12);
+      transform: rotate(-5deg);
+    }
+
+    .window-dots {
+      display: flex;
+      gap: 5px;
+      margin-bottom: 9px;
+    }
+
+    .window-dots i {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #b9c0ae;
+    }
+
+    .window-line {
+      height: 6px;
+      width: 76%;
+      margin: 6px 0;
+      border-radius: 6px;
+      background: #e2e5da;
+    }
+
+    .window-line.short {
+      width: 48%;
+      background: #9da78b;
+    }
+
+    .floating-note {
+      position: absolute;
+      z-index: 3;
+      right: -9px;
+      top: 27px;
+      padding: 12px 15px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: white;
+      box-shadow: 0 12px 30px rgba(39,49,40,.1);
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .floating-note strong {
+      display: block;
+      color: var(--ink);
+      font-size: 14px;
+    }
+
+    .section {
+      padding: 76px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
       gap: 30px;
-      align-items: center;
-      padding: 24px;
-      border: 1px solid var(--borde);
-      border-radius: 22px;
-      background: var(--blanco);
-      transition: transform 0.25s, box-shadow 0.25s;
+      margin-bottom: 32px;
     }
 
-    .tipo {
-      display: inline-block;
-      margin-bottom: 10px;
-      color: var(--azul);
-      font-size: 0.75rem;
-      font-weight: 800;
-      letter-spacing: 0.1em;
+    .section-kicker {
+      margin-bottom: 8px;
+      color: var(--blue);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .16em;
       text-transform: uppercase;
     }
 
-    .proyecto h3 {
-      margin-bottom: 8px;
-      font-size: 1.5rem;
-      letter-spacing: -0.04em;
+    .section-head h2 {
+      font-size: clamp(32px, 4vw, 47px);
+      line-height: 1.08;
+      letter-spacing: -.06em;
     }
 
-    .proyecto p {
-      margin-bottom: 18px;
-      color: var(--suave);
+    .section-head > p {
+      max-width: 420px;
+      color: var(--muted);
+      font-size: 15px;
     }
 
-    .vista {
-      min-height: 210px;
+    .projects {
+      display: grid;
+      gap: 17px;
+    }
+
+    .project {
+      display: grid;
+      grid-template-columns: 1fr .85fr;
+      gap: 34px;
+      align-items: center;
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: white;
+      transition: transform .25s, box-shadow .25s;
+    }
+
+    .project:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+    }
+
+    .project-content {
+      padding: 12px 8px 12px 14px;
+    }
+
+    .project-type {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 13px;
+      color: var(--blue-dark);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+
+    .project-type::before {
+      content: '';
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--blue);
+    }
+
+    .project h3 {
+      margin-bottom: 9px;
+      font-size: 24px;
+      letter-spacing: -.05em;
+    }
+
+    .project p {
+      max-width: 500px;
+      margin-bottom: 19px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .project .button {
+      min-height: 43px;
+      padding: 0 17px;
+      font-size: 13px;
+    }
+
+    .project-image {
+      min-height: 220px;
       overflow: hidden;
+      border: 1px solid var(--line);
       border-radius: 15px;
-      background: #eaf0f7;
+      background: linear-gradient(135deg, #eeeee5, #dfe4d7);
     }
 
-    .vista img {
-      display: block;
+    .project-image img {
       width: 100%;
       height: 100%;
-      min-height: 210px;
+      min-height: 220px;
       object-fit: cover;
       object-position: top;
+      transition: transform .5s;
     }
 
-    .vista-sin-imagen {
+    .project:hover .project-image img {
+      transform: scale(1.025);
+    }
+
+    .service-groups {
+      border-top: 1px solid var(--line);
+    }
+
+    .service-group {
       display: grid;
-      place-items: center;
-      padding: 25px;
-      color: var(--azul-oscuro);
-      text-align: center;
-      font-size: 1.4rem;
+      grid-template-columns: .32fr 1fr;
+      gap: 42px;
+      padding: 38px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .service-group-heading {
+      display: flex;
+      align-items: flex-start;
+      gap: 13px;
+    }
+
+    .service-group-number {
+      color: var(--blue);
+      font-family: Manrope, sans-serif;
+      font-size: 13px;
       font-weight: 800;
-      background: linear-gradient(135deg, #dceefa, #f7fbff);
+      letter-spacing: .08em;
     }
 
-    .contacto {
-      padding: 55px;
-      border-radius: 28px;
+    .service-group-heading h3 {
+      max-width: 190px;
+      font-size: 21px;
+      line-height: 1.25;
+      letter-spacing: -.045em;
+    }
+
+    .service-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      column-gap: 42px;
+    }
+
+    .service-item {
+      display: grid;
+      grid-template-columns: 34px 1fr;
+      gap: 9px;
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(227,223,212,.75);
+      transition: transform .2s;
+    }
+
+    .service-item:hover {
+      transform: translateX(4px);
+    }
+
+    .service-item:nth-last-child(-n+2) {
+      border-bottom: 0;
+    }
+
+    .service-item-number {
+      padding-top: 3px;
+      color: #8c7952;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .06em;
+    }
+
+    .service-item h4 {
+      margin-bottom: 5px;
+      font-family: Manrope, sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: -.025em;
+    }
+
+    .service-item p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    .learning-note {
+      margin-top: 22px;
+      padding-left: 15px;
+      border-left: 2px solid var(--blue);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .learning-note strong {
+      color: var(--ink);
+    }
+
+    .contact-panel {
+      position: relative;
+      overflow: hidden;
+      padding: 53px;
+      border-radius: 26px;
+      background: var(--ink);
       color: white;
-      background:
-        radial-gradient(circle at 90% 0%, rgba(255,255,255,0.18), transparent 30%),
-        linear-gradient(130deg, #14528b, #247bc1);
     }
 
-    .contacto h2 {
+    .contact-panel::after {
+      content: '';
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      top: -180px;
+      right: -80px;
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 50%;
+      box-shadow: 0 0 0 35px rgba(255,255,255,.035), 0 0 0 70px rgba(255,255,255,.025);
+    }
+
+    .contact-panel .section-kicker {
+      color: #d1c29b;
+    }
+
+    .contact-panel h2 {
+      position: relative;
+      z-index: 1;
       max-width: 650px;
       margin-bottom: 12px;
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      line-height: 1;
-      letter-spacing: -0.06em;
+      font-size: clamp(32px, 5vw, 54px);
+      line-height: 1.04;
+      letter-spacing: -.065em;
     }
 
-    .contacto p {
-      max-width: 600px;
-      margin-bottom: 24px;
-      color: rgba(255,255,255,0.82);
+    .contact-panel p {
+      position: relative;
+      z-index: 1;
+      max-width: 540px;
+      margin-bottom: 25px;
+      color: #d0d4cc;
+      font-size: 15px;
     }
 
-    .contacto .boton {
-      background: white;
-      color: var(--azul-oscuro);
+    .contact-panel .button {
+      position: relative;
+      z-index: 1;
+      background: #d1c29b;
+      color: #26342c;
     }
 
     footer {
-      padding: 30px 0;
-      color: var(--suave);
-      text-align: center;
-      font-size: 0.9rem;
+      padding: 29px 0 36px;
+      color: var(--muted);
+      font-size: 12px;
     }
 
-    /* Cada sección vuelve a aparecer al entrar en pantalla, incluso al subir y bajar. */
-    .revelar {
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      border-top: 1px solid var(--line);
+      padding-top: 20px;
+    }
+
+    .reveal {
       opacity: 0;
-      transform: translateY(35px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
+      transform: translateY(24px);
+      transition: opacity .7s ease, transform .7s ease;
     }
 
-    .revelar.visible {
+    .reveal.in-view {
       opacity: 1;
       transform: translateY(0);
     }
 
-    @keyframes flotar {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
-
-    @media (max-width: 760px) {
-      .menu {
-        gap: 12px;
-        font-size: 0.82rem;
-      }
-
+    @media (max-width: 800px) {
       .hero {
-        min-height: auto;
         grid-template-columns: 1fr;
-        gap: 35px;
-        padding: 65px 0;
+        gap: 30px;
+        padding: 65px 0 75px;
       }
 
-      .hero-tarjeta {
-        min-height: 290px;
+      .hero-visual {
+        min-height: 340px;
       }
 
-      .encabezado-seccion {
-        align-items: start;
+      .section-head {
+        align-items: flex-start;
         flex-direction: column;
       }
 
-      .rejilla-servicios {
+      .project {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .project-content {
+        padding: 8px;
+      }
+
+      .service-group {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        width: min(100% - 32px, 1120px);
+      }
+
+      .nav {
+        min-height: 66px;
+      }
+
+      .nav-links {
+        gap: 14px;
+        font-size: 12px;
+      }
+
+      .nav-links a:nth-child(2) {
+        display: none;
+      }
+
+      .nav-links .nav-cta {
+        padding: 8px 12px;
+      }
+
+      .hero {
+        padding-top: 52px;
+      }
+
+      h1 {
+        font-size: clamp(47px, 13vw, 68px);
+      }
+
+      .hero-copy {
+        font-size: 15px;
+      }
+
+      .hero-visual {
+        min-height: 300px;
+      }
+
+      .visual-card {
+        min-height: 280px;
+        padding: 22px;
+      }
+
+      .visual-title {
+        right: 22px;
+        bottom: 21px;
+        left: 22px;
+        font-size: 23px;
+      }
+
+      .floating-note {
+        right: 0;
+      }
+
+      .section {
+        padding: 60px 0;
+      }
+
+      .service-list {
         grid-template-columns: 1fr;
       }
 
-      .proyecto {
-        grid-template-columns: 1fr;
+      .service-item:nth-last-child(-n+2) {
+        border-bottom: 1px solid rgba(227,223,212,.65);
       }
 
-      .contacto {
-        padding: 32px 24px;
+      .service-item:last-child {
+        border-bottom: 0;
+      }
+
+      .project-image,
+      .project-image img {
+        min-height: 185px;
+      }
+
+      .contact-panel {
+        padding: 34px 24px;
+      }
+
+      .footer-inner {
+        flex-direction: column;
       }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
+      *,
+      *::before,
+      *::after {
         scroll-behavior: auto !important;
-        animation-duration: 0.01ms !important;
-        transition-duration: 0.01ms !important;
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
       }
     }
   </style>
 </head>
 
 <body>
-  <header>
-    <nav class="contenedor">
-      <a class="logo" href="#">Mi portafolio</a>
-      <div class="menu">
-        <a href="#servicios">Servicios</a>
+  <header class="topbar">
+    <nav class="nav container" aria-label="Navegación principal">
+      <a class="brand" href="#inicio">
+        <span class="brand-mark">M</span>
+        <span>Mi portafolio</span>
+      </a>
+
+      <div class="nav-links">
         <a href="#proyectos">Proyectos</a>
-        <a href="#contacto">Contacto</a>
+        <a href="#servicios">Servicios</a>
+        <a class="nav-cta" href="#contacto">Contacto ↗</a>
       </div>
     </nav>
   </header>
 
   <main>
-    <div class="contenedor">
-      <section class="hero">
-        <div class="revelar">
-          <span class="etiqueta">Diseño web para negocios</span>
-          <h1>Tu negocio merece una página <span>que destaque.</span></h1>
-          <p class="intro">
-            Estoy aprendiendo diseño web y creo páginas de práctica y
-            materiales digitales para mostrar negocios en internet.
+    <div class="container">
+      <section class="hero" id="inicio">
+        <div class="reveal">
+          <div class="eyebrow">Diseño digital para negocios</div>
+          <h1>Ideas claras.<br><em>Presencia digital.</em></h1>
+          <p class="hero-copy">
+            Creo páginas web y contenido digital con un diseño cuidado
+            para que los negocios puedan presentar mejor lo que hacen.
           </p>
-          <div class="botones">
-            <a class="boton" href="#proyectos">Ver mis proyectos ↓</a>
-            <a class="boton boton-secundario" href="#contacto">Hablemos</a>
+
+          <div class="actions">
+            <a class="button" href="#proyectos">Explorar proyectos ↓</a>
+            <a class="button ghost" href="#contacto">Cuéntame tu idea ↗</a>
           </div>
         </div>
 
-        <div class="hero-tarjeta revelar">
-          <small>DISEÑO · IDEAS · NEGOCIOS</small>
-          <h2>Una presencia digital clara y moderna.</h2>
-          <div class="circulos" aria-hidden="true">
-            <span></span><span></span><span></span>
+        <div class="hero-visual reveal" aria-label="Ilustración decorativa de una página web">
+          <div class="visual-card">
+            <span class="visual-label">DISEÑO DIGITAL · 2026</span>
+
+            <div class="visual-window" aria-hidden="true">
+              <div class="window-dots"><i></i><i></i><i></i></div>
+              <div class="window-line short"></div>
+              <div class="window-line"></div>
+              <div class="window-line"></div>
+            </div>
+
+            <div class="visual-title">Tu negocio,<br>bien presentado.</div>
+          </div>
+
+          <div class="floating-note">
+            <strong>Diseño adaptable</strong>
+            Para móvil y computadora
           </div>
         </div>
       </section>
 
-      <section id="servicios">
-        <div class="encabezado-seccion revelar">
+      <section class="section" id="proyectos">
+        <div class="section-head reveal">
           <div>
-            <span class="etiqueta">Lo que puedo crear</span>
-            <h2>Servicios</h2>
+            <div class="section-kicker">Selección de trabajo</div>
+            <h2>Proyectos</h2>
           </div>
           <p>
-            Cada proyecto se acuerda antes de empezar: qué necesitas,
-            qué archivos recibirás y cuánto cuesta.
+            Una muestra de páginas y conceptos que he creado.
+            Las demos de barbería y cafetería son ficticias.
           </p>
         </div>
 
-        <div class="rejilla-servicios">
-          <article class="servicio revelar">
-            <div class="icono">🌐</div>
-            <h3>Páginas web</h3>
-            <p>
-              Páginas sencillas para presentar un negocio, sus servicios,
-              horarios y formas de contacto.
-            </p>
-          </article>
-
-          <article class="servicio revelar">
-            <div class="icono">🎨</div>
-            <h3>Imágenes para redes</h3>
-            <p>
-              Diseños sencillos para promociones, publicaciones o anuncios
-              digitales, según la información que me compartas.
-            </p>
-          </article>
-
-          <article class="servicio revelar">
-            <div class="icono">🎬</div>
-            <h3>Videos cortos</h3>
-            <p>
-              Edición básica de videos breves para mostrar productos,
-              servicios o promociones en redes.
-            </p>
-          </article>
-        </div>
-
-        <p class="nota revelar">
-          También estoy practicando prototipos de aplicaciones; por ahora
-          no ofrezco aplicaciones listas para publicar.
-        </p>
-      </section>
-
-      <section id="proyectos">
-        <div class="encabezado-seccion revelar">
-          <div>
-            <span class="etiqueta">Algunos ejemplos</span>
-            <h2>Mis proyectos</h2>
-          </div>
-          <p>
-            Las demos de barbería y cafetería son ficticias y sirven para
-            mostrar ideas de diseño.
-          </p>
-        </div>
-
-        <div class="proyectos">
-          <article class="proyecto revelar">
-            <div>
-              <span class="tipo">Proyecto familiar</span>
-              <h3>Tyjuasrip · Viajes</h3>
+        <div class="projects">
+          <article class="project reveal">
+            <div class="project-content">
+              <span class="project-type">Proyecto familiar · Viajes</span>
+              <h3>Tyjuasrip</h3>
               <p>
-                Página de viajes con información de tours, fechas,
-                precios y contacto.
+                Una página para presentar salidas, información de tours
+                y opciones de contacto.
               </p>
-              <a class="boton" href="https://tyjuastipweb123-32.netlify.app/"
-                 target="_blank" rel="noopener noreferrer">
-                Ver página de viajes ↗
+              <a class="button"
+                 href="https://tyjuastipweb123-32.netlify.app/"
+                 target="_blank"
+                 rel="noopener noreferrer">
+                Ver página ↗
               </a>
             </div>
-            <div class="vista">
+
+            <div class="project-image">
               <img src="tyjuasrip-preview.png"
                    alt="Vista previa de la página de viajes Tyjuasrip">
             </div>
           </article>
 
-          <article class="proyecto revelar">
-            <div>
-              <span class="tipo">Demo ficticia</span>
+          <article class="project reveal">
+            <div class="project-content">
+              <span class="project-type">Demo ficticia · Barbería</span>
               <h3>Norte Barber Studio</h3>
               <p>
                 Concepto de barbería moderna con servicios, estilos,
                 preguntas frecuentes y diseño adaptable.
               </p>
-              <a class="boton" href="barberia-demo.html"
-                 target="_blank" rel="noopener noreferrer">
-                Ver demo de barbería ↗
+              <a class="button"
+                 href="barberia-demo.html"
+                 target="_blank"
+                 rel="noopener noreferrer">
+                Ver demo ↗
               </a>
             </div>
-            <div class="vista">
+
+            <div class="project-image">
               <img src="barberia-preview.png"
-                   alt="Vista previa de la demo Norte Barber Studio">
+                   alt="Vista previa de Norte Barber Studio">
             </div>
           </article>
 
-          <article class="proyecto revelar">
-            <div>
-              <span class="tipo">Demo ficticia</span>
-              <h3>Café · Sitio de práctica</h3>
+          <article class="project reveal">
+            <div class="project-content">
+              <span class="project-type">Demo ficticia · Cafetería</span>
+              <h3>Café de especialidad</h3>
               <p>
-                Ejemplo de una página para cafetería, con presentación,
-                menú y datos del negocio.
+                Un concepto de cafetería para mostrar su ambiente,
+                menú y datos importantes en una página.
               </p>
-              <a class="boton" href="cafe-demo.html"
-                 target="_blank" rel="noopener noreferrer">
-                Ver demo de cafetería ↗
+              <a class="button"
+                 href="cafe-demo.html"
+                 target="_blank"
+                 rel="noopener noreferrer">
+                Ver demo ↗
               </a>
             </div>
-            <div class="vista">
+
+            <div class="project-image">
               <img src="cafe-preview.png"
                    alt="Vista previa de la demo de cafetería">
             </div>
@@ -596,18 +884,169 @@
         </div>
       </section>
 
-      <section id="contacto">
-        <div class="contacto revelar">
-          <span class="etiqueta" style="color:#d9efff">Contacto</span>
-          <h2>¿Tienes una idea para tu negocio?</h2>
+      <section class="section" id="servicios">
+        <div class="section-head reveal">
+          <div>
+            <div class="section-kicker">En qué puedo ayudarte</div>
+            <h2>Servicios</h2>
+          </div>
           <p>
-            Escríbeme para contarme qué necesitas. Primero podemos hablar
-            de la idea, el precio y lo que incluiría el trabajo.
+            Diseño web y materiales digitales para pequeños negocios.
+            Acordamos el alcance antes de comenzar.
           </p>
-          <a class="boton"
-             href="https://wa.me/526645598254?text=Hola%2C%20vi%20tu%20portafolio%20y%20quiero%20preguntar%20por%20una%20p%C3%A1gina%20web."
-             target="_blank" rel="noopener noreferrer">
-            Contactar por WhatsApp ↗
+        </div>
+
+        <div class="service-groups">
+          <div class="service-group reveal">
+            <div class="service-group-heading">
+              <span class="service-group-number">01</span>
+              <h3>Web y presencia digital</h3>
+            </div>
+
+            <div class="service-list">
+              <article class="service-item">
+                <span class="service-item-number">01</span>
+                <div>
+                  <h4>Páginas web para negocios</h4>
+                  <p>Un sitio claro para explicar qué ofrece un negocio, mostrar sus datos importantes y facilitar que los clientes sepan cómo contactarlo.</p>
+                </div>
+              </article>
+
+              <article class="service-item">
+                <span class="service-item-number">02</span>
+                <div>
+                  <h4>Landing pages</h4>
+                  <p>Una página enfocada en una sola idea, como anunciar un tour, presentar un evento o destacar una promoción especial.</p>
+                </div>
+              </article>
+
+              <article class="service-item">
+                <span class="service-item-number">03</span>
+                <div>
+                  <h4>Diseño adaptable a celular</h4>
+                  <p>Ajustes de distribución, texto e imágenes para que la página sea cómoda de leer y usar en pantallas pequeñas.</p>
+                </div>
+              </article>
+
+              <article class="service-item">
+                <span class="service-item-number">04</span>
+                <div>
+                  <h4>Nuevas secciones</h4>
+                  <p>Se pueden sumar apartados de servicios, precios, horarios, preguntas frecuentes, galerías y otra información del negocio.</p>
+                </div>
+              </article>
+
+              <article class="service-item">
+                <span class="service-item-number">05</span>
+                <div>
+                  <h4>Botones de contacto</h4>
+                  <p>Enlaces visibles a WhatsApp, correo o redes sociales para que las personas encuentren rápidamente la forma de comunicarse.</p>
+                </div>
+              </article>
+
+              <article class="service-item">
+                <span class="service-item-number">06</span>
+                <div>
+                  <h4>Menús digitales</h4>
+                  <p>Organización de platillos, bebidas y precios en una página fácil de consultar desde el teléfono.</p>
+                </div>
+              </article>
+
+              <article class="service-item">
+                <span class="service-item-number">07</span>
+                <div>
+                  <h4>Catálogos sencillos</h4>
+                  <p>Una forma ordenada de presentar productos con sus imágenes y datos, usando la información que entregue el negocio.</p>
+                </div>
+              </article>
+
+              <article class="service-item">
+                <span class="service-item-number">08</span>
+                <div>
+                  <h4>Actualización de páginas</h4>
+                  <p>Cambios acordados a textos, imágenes, horarios o precios para que la información publicada siga vigente.</p>
+                </div>
+              </article>
+
+              <article class="service-item">
+                <span class="service-item-number">09</span>
+                <div>
+                  <h4>Prototipos de diseño</h4>
+                  <p>Una primera propuesta visual para decidir la estructura y el estilo de una página antes de construirla.</p>
+                </div>
+              </article>
+
+              <article class="service-item">
+                <span class="service-item-number">10</span>
+                <div>
+                  <h4>Textos para páginas</h4>
+                  <p>Apoyo para ordenar y redactar descripciones breves; el negocio revisa y confirma todos los datos antes de publicarlos.</p>
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <div class="service-group reveal">
+            <div class="service-group-heading">
+              <span class="service-group-number">02</span>
+              <h3>Diseño y contenido visual</h3>
+            </div>
+
+            <div class="service-list">
+              <article class="service-item">
+                <span class="service-item-number">11</span>
+                <div>
+                  <h4>Flyers digitales</h4>
+                  <p>Piezas gráficas para comunicar promociones, eventos, horarios especiales o novedades en redes y mensajería.</p>
+                </div>
+              </article>
+
+              <article class="service-item">
+                <span class="service-item-number">12</span>
+                <div>
+                  <h4>Publicaciones para redes</h4>
+                  <p>Imágenes con textos breves para que un negocio presente productos, comparta novedades o anuncie una oferta.</p>
+                </div>
+              </article>
+
+              <article class="service-item">
+                <span class="service-item-number">13</span>
+                <div>
+                  <h4>Banners e imágenes de portada</h4>
+                  <p>Gráficos preparados para encabezar páginas, perfiles o anuncios, usando los colores y materiales del negocio.</p>
+                </div>
+              </article>
+
+              <article class="service-item">
+                <span class="service-item-number">14</span>
+                <div>
+                  <h4>Galerías y portafolios</h4>
+                  <p>Secciones visuales para reunir fotos de productos, espacios o trabajos y presentarlos de forma ordenada.</p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+
+        <p class="learning-note reveal">
+          <strong>Alcance claro:</strong> cada trabajo se acuerda antes de empezar,
+          incluyendo materiales, precio y entrega.
+        </p>
+      </section>
+
+      <section class="section" id="contacto">
+        <div class="contact-panel reveal">
+          <div class="section-kicker">Hablemos de tu proyecto</div>
+          <h2>¿Tienes un negocio o una idea?</h2>
+          <p>
+            Cuéntame qué necesitas y te responderé con una propuesta sencilla,
+            el precio y lo que incluiría el trabajo.
+          </p>
+          <a class="button"
+             href="https://wa.me/526645598254?text=Hola%2C%20vi%20tu%20portafolio%20y%20quiero%20preguntar%20por%20tus%20servicios."
+             target="_blank"
+             rel="noopener noreferrer">
+            Escribir por WhatsApp ↗
           </a>
         </div>
       </section>
@@ -615,23 +1054,22 @@
   </main>
 
   <footer>
-    <div class="contenedor">
-      Portafolio de práctica · Diseño web, imágenes y videos
+    <div class="container footer-inner">
+      <span>Portafolio de diseño digital</span>
+      <span>Hecho con HTML y CSS · 2026</span>
     </div>
   </footer>
 
   <script>
-    const elementos = document.querySelectorAll(".revelar");
-
-    const observador = new IntersectionObserver((entradas) => {
-      entradas.forEach((entrada) => {
-        entrada.target.classList.toggle("visible", entrada.isIntersecting);
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        entry.target.classList.toggle('in-view', entry.isIntersecting);
       });
-    }, {
-      threshold: 0.12
-    });
+    }, { threshold: 0.12 });
 
-    elementos.forEach((elemento) => observador.observe(elemento));
+    document.querySelectorAll('.reveal').forEach((element) => {
+      observer.observe(element);
+    });
   </script>
 </body>
 </html>
